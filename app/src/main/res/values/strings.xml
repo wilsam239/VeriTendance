@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VeriTendance</string>
+    <string name="title_employees">Employees</string>
+    <string name="title_history">History</string>
+    <string name="title_session">Session</string>
+    <string name="title_topics">Topics</string>
+</resources>
