@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_history:
                     mTextMessage.setText(R.string.title_history);
+
                     return true;
                 case R.id.navigation_session:
                     mTextMessage.setText(R.string.title_session);
