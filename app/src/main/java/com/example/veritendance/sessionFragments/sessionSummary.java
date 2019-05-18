@@ -1,19 +1,25 @@
-package com.example.veritendance;
+package com.example.veritendance.sessionFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-public class newSessionFragment extends Fragment {
+import com.example.veritendance.R;
+
+public class sessionSummary extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_new_session, parent, false);
+        View view = inflater.inflate(R.layout.activity_session_summary, parent, false);
+        return view;
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+    }
+    @Override
+    public void onClick(View v) {
 
     }
 }
