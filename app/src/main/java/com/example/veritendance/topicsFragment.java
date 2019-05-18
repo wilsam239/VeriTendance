@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 public class topicsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_new_session, parent, false);
+        return inflater.inflate(R.layout.activity_topics, parent, false);
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
