@@ -24,9 +24,10 @@ public class newSessionFragment extends Fragment implements View.OnClickListener
     }
     @Override
     public void onClick(View v) {
+
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new sessionSummary()).commit();
+        ft.replace(R.id.fragment_container, new emptySession()).commit();
     }
 }
 
