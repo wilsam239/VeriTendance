@@ -20,6 +20,7 @@ public class emptySession extends Fragment implements View.OnClickListener {
     private TextView startTime;
     public String startTimeStr;
     public Date endTime;
+    public String endTimeStr;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -38,8 +39,9 @@ public class emptySession extends Fragment implements View.OnClickListener {
     }
     @Override
     public void onClick(View v) {
+        endTimeStr = formatter.format(new Date(System.currentTimeMillis()));
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new sessionSummary()).commit();
+        ft.replace(R.id.fragment_container, new sessionSummary(this)).commit();
     }
 }

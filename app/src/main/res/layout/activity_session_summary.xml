@@ -117,7 +117,7 @@
             android:ems="10"
             android:inputType="text"
             android:text=""
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:translationX="150dp" />
 
@@ -129,7 +129,7 @@
             android:gravity="right"
             android:paddingRight="16dp"
             android:text="End Time Here"
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <EditText
@@ -141,7 +141,7 @@
             android:ems="10"
             android:inputType="text"
             android:text=""
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:translationX="16dp" />
 
         <TextView
@@ -152,7 +152,7 @@
             android:gravity="right"
             android:paddingRight="16dp"
             android:text="Start Time Here"
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView

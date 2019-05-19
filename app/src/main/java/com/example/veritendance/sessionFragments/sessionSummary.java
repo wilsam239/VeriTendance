@@ -12,18 +12,21 @@ import com.example.veritendance.R;
 
 public class sessionSummary extends Fragment implements View.OnClickListener {
     private TextView startTime;
+    private TextView endTime;
     private emptySession sesh;
-    public void sessionSummary(emptySession sesh) {
+
+    public sessionSummary(emptySession sesh) {
         this.sesh = sesh;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_session_summary, parent, false);
-
         startTime = (TextView) view.findViewById(R.id.startTime);
         startTime.setText(sesh.startTimeStr);
 
+        endTime = (TextView) view.findViewById(R.id.endTime);
+        endTime.setText(sesh.endTimeStr);
         return view;
     }
     @Override
