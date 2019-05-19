@@ -4,4 +4,7 @@
     <string name="title_history">History</string>
     <string name="title_session">Session</string>
     <string name="title_topics">Topics</string>
+    <string name="title_start_session">Start Session</string>
+    <string name="title_summary">Summary</string>
+    <string name="title_new_employee">New Employee</string>
 </resources>

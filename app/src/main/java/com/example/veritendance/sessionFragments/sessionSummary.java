@@ -10,10 +10,16 @@ import com.example.veritendance.MainActivity;
 
 import com.example.veritendance.R;
 
+import java.text.SimpleDateFormat;
+
 public class sessionSummary extends Fragment implements View.OnClickListener {
     private TextView startTime;
     private TextView endTime;
+    private TextView endTimeTop;
+    private TextView sessionName;
     private emptySession sesh;
+    SimpleDateFormat formatter= new SimpleDateFormat("dd MMM. yyyy hh:mm:ss a");
+
 
     public sessionSummary(emptySession sesh) {
         this.sesh = sesh;
@@ -27,6 +33,13 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
 
         endTime = (TextView) view.findViewById(R.id.endTime);
         endTime.setText(sesh.endTimeStr);
+
+        endTimeTop = (TextView) view.findViewById(R.id.endTimePlaceholderTop);
+        endTimeTop.setText(formatter.format(sesh.endTime));
+
+        sessionName = (TextView) view.findViewById(R.id.sessionName);
+        sessionName.setText(sesh.startTimeStr.contains("PM") ? "Afternoon Session" : "Morning Session");
+
         return view;
     }
     @Override

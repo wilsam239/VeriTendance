@@ -16,18 +16,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class emptySession extends Fragment implements View.OnClickListener {
-    SimpleDateFormat formatter= new SimpleDateFormat("dd-MM-yy hh:mm a");
+    SimpleDateFormat formatter= new SimpleDateFormat("dd/MM/yy hh:mm a");
     private TextView startTime;
     public String startTimeStr;
     public Date endTime;
     public String endTimeStr;
+    protected TextView sessionPlaceholder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_empty_session, parent, false);
         startTimeStr = formatter.format(new Date(System.currentTimeMillis()));
-        startTime = (TextView) view.findViewById(R.id.startTime);
-        startTime.setText(startTimeStr);
+        sessionPlaceholder = (TextView) view.findViewById(R.id.fragmentTitle);
+        sessionPlaceholder.setText(startTimeStr.contains("PM") ? "Afternoon Session" : "Morning Session");
         Button finishSession = (Button) view.findViewById(R.id.finishSession);
         finishSession.setOnClickListener(this);
 
@@ -39,7 +40,8 @@ public class emptySession extends Fragment implements View.OnClickListener {
     }
     @Override
     public void onClick(View v) {
-        endTimeStr = formatter.format(new Date(System.currentTimeMillis()));
+        endTime = new Date(System.currentTimeMillis());
+        endTimeStr = formatter.format(endTime);
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, new sessionSummary(this)).commit();
