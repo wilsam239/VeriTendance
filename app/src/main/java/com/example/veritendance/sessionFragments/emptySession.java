@@ -23,6 +23,7 @@ public class emptySession extends Fragment implements View.OnClickListener {
     public String endTimeStr;
     protected TextView sessionPlaceholder;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_empty_session, parent, false);
