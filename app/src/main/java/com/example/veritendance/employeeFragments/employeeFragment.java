@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.veritendance.MainActivity;
 import com.example.veritendance.R;
@@ -23,15 +24,13 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layourManager;
     private List employeesList = new ArrayList();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_employees, parent, false);
         FloatingActionButton addNewEmployee = (FloatingActionButton) view.findViewById(R.id.newEmployeeButton);
         addNewEmployee.setOnClickListener(this);
         employees = (RecyclerView) view.findViewById(R.id.employees);
-
-
-
 
         return view;
     }
@@ -43,6 +42,14 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new newEmployee()).commit();
+        ft.replace(R.id.fragment_container, new newEmployee(this)).commit();
+    }
+
+    public List getEmployeesList() {
+        return employeesList;
+    }
+
+    public void appendEmployee(employee newEmployee) {
+        this.employeesList.add(newEmployee);
     }
 }

@@ -17,6 +17,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     // Begin the transaction
     private Fragment currentFragment;
+    private employeeFragment employeeTab = null;
+    private historyFragment historyTab = null;
+    private topicsFragment topicsTab = null;
+    private newSessionFragment sessionTab = null;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -30,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_employees:
                     // Create a new fragment transaction
                     ft = getSupportFragmentManager().beginTransaction();
+
                     // Create a new Employee Fragment
-                    currentFragment = new employeeFragment();
+                    currentFragment = employeeTab == null ? new employeeFragment() : employeeTab;
                     // Using the fragment transaction, replace the fragment container with the new fragment
                     ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
@@ -39,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     // Create a new fragment transaction
                     ft = getSupportFragmentManager().beginTransaction();
                     // Create a new history Fragment
-                    currentFragment = new historyFragment();
+                    currentFragment = historyTab == null ? new historyFragment() : historyTab;
                     // Using the fragment transaction, replace the fragment container with the new fragment
                     ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
@@ -47,14 +53,14 @@ public class MainActivity extends AppCompatActivity {
                     // Create a new fragment transaction
                     ft = getSupportFragmentManager().beginTransaction();
                     // Create a new session Fragment
-                    currentFragment = new newSessionFragment();
+                    currentFragment = sessionTab == null ? new newSessionFragment() : sessionTab;
                     ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
                 case R.id.navigation_topics:
                     // Create a new fragment transaction
                     ft = getSupportFragmentManager().beginTransaction();
                     // Create a new topics Fragment
-                    currentFragment = new topicsFragment();
+                    currentFragment = topicsTab == null ? new topicsFragment() : topicsTab;
                     // Using the fragment transaction, replace the fragment container with the new fragment
                     ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
