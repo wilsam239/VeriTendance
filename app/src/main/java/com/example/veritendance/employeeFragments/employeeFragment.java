@@ -1,6 +1,7 @@
 package com.example.veritendance.employeeFragments;
 
 import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,7 +24,7 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
     private RecyclerView employees;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layourManager;
-    private List employeesList = new ArrayList();
+    private List employeesList = new ArrayList<employee>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {

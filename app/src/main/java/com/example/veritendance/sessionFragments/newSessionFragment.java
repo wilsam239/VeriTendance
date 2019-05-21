@@ -8,9 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.veritendance.MainActivity;
 import com.example.veritendance.R;
 
 public class newSessionFragment extends Fragment implements View.OnClickListener {
+    MainActivity main;
+
+    //public newSessionFragment(MainActivity m) { main = m;}
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_new_session, parent, false);
