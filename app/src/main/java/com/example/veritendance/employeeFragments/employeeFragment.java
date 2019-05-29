@@ -22,16 +22,25 @@ import java.util.List;
 
 public class employeeFragment extends Fragment implements View.OnClickListener {
     private RecyclerView employees;
-    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layourManager;
-    private List employeesList = new ArrayList<employee>();
+    private ArrayList<employee> employeeList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_employees, parent, false);
         FloatingActionButton addNewEmployee = (FloatingActionButton) view.findViewById(R.id.newEmployeeButton);
         addNewEmployee.setOnClickListener(this);
-        employees = (RecyclerView) view.findViewById(R.id.employees);
+        //ArrayList<employee> employees= new ArrayList<employee>();
+        employeeList.add(new employee());
+        employeeList.add(new employee("Jackal", "twitch.tv/jackalgamerau", "streamer"));
+        //System.out.println(employees.get(0).getName());
+        this.employees = (RecyclerView) view.findViewById(R.id.employees);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
+        this.employees.setLayoutManager(mLayoutManager);
+
+        adapter = new employeeAdapter(employeeList);
+        this.employees.setAdapter(adapter);
 
         return view;
     }
@@ -47,10 +56,10 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
     }
 
     public List getEmployeesList() {
-        return employeesList;
+        return employeeList;
     }
 
     public void appendEmployee(employee newEmployee) {
-        this.employeesList.add(newEmployee);
+        this.employeeList.add(newEmployee);
     }
 }
