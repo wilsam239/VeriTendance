@@ -45,6 +45,6 @@ public class newEmployee extends Fragment implements View.OnClickListener {
         parentFragment.appendEmployee(new employee(name.getText().toString(), email.getText().toString(), occupation.getText().toString()));
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new employeeFragment()).commit();
+        ft.replace(R.id.fragment_container, parentFragment).commit();
     }
 }
