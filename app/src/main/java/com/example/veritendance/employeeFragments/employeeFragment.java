@@ -24,7 +24,9 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
     private RecyclerView employees;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layourManager;
-    private ArrayList<employee> employeeList = new ArrayList<>();
+    private ArrayList<employee> employeeList;
+
+    public employeeFragment() {employeeList = new ArrayList<>();}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -32,8 +34,8 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
         FloatingActionButton addNewEmployee = (FloatingActionButton) view.findViewById(R.id.newEmployeeButton);
         addNewEmployee.setOnClickListener(this);
         //ArrayList<employee> employees= new ArrayList<employee>();
-        employeeList.add(new employee());
-        employeeList.add(new employee("Jackal", "twitch.tv/jackalgamerau", "streamer"));
+        //employeeList.add(new employee());
+        //employeeList.add(new employee("Jackal", "twitch.tv/jackalgamerau", "streamer"));
         //System.out.println(employees.get(0).getName());
         this.employees = (RecyclerView) view.findViewById(R.id.employees);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());

@@ -37,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
                     ft = getSupportFragmentManager().beginTransaction();
 
                     // Create a new Employee Fragment
-                    currentFragment = employeeTab == null ? new employeeFragment() : employeeTab;
+                    if(employeeTab == null) {
+                        employeeTab = new employeeFragment();
+                    }
+                    currentFragment = employeeTab;
                     // Using the fragment transaction, replace the fragment container with the new fragment
                     ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
@@ -45,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
                     // Create a new fragment transaction
                     ft = getSupportFragmentManager().beginTransaction();
                     // Create a new history Fragment
-                    currentFragment = historyTab == null ? new historyFragment() : historyTab;
+                    if(historyTab == null) {
+                        historyTab = new historyFragment();
+                    }
+                    currentFragment = historyTab;
                     // Using the fragment transaction, replace the fragment container with the new fragment
                     ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
@@ -53,14 +59,20 @@ public class MainActivity extends AppCompatActivity {
                     // Create a new fragment transaction
                     ft = getSupportFragmentManager().beginTransaction();
                     // Create a new session Fragment
-                    currentFragment = sessionTab == null ? new newSessionFragment() : sessionTab;
+                    if(sessionTab == null) {
+                        sessionTab = new newSessionFragment();
+                    }
+                    currentFragment = sessionTab;
                     ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
                 case R.id.navigation_topics:
                     // Create a new fragment transaction
                     ft = getSupportFragmentManager().beginTransaction();
                     // Create a new topics Fragment
-                    currentFragment = topicsTab == null ? new topicsFragment() : topicsTab;
+                    if(topicsTab == null) {
+                        topicsTab = new topicsFragment();
+                    }
+                    currentFragment = topicsTab;
                     // Using the fragment transaction, replace the fragment container with the new fragment
                     ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
