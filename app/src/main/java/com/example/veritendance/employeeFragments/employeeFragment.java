@@ -21,7 +21,10 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<employee> employeeList;
 
-    public employeeFragment() {employeeList = new ArrayList<>();}
+    public employeeFragment() {
+        employeeList = new ArrayList<>();
+        initialiseEmployees();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -58,5 +61,13 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
 
     public void appendEmployee(employee newEmployee) {
         this.employeeList.add(newEmployee);
+    }
+
+    public void initialiseEmployees() {
+        this.employeeList.add(new employee("Sam Williamson", "sam.williamson@best.com.au", "Support Officer"));
+        this.employeeList.add(new employee("Steve Rogers", "steve.rogers@avengers.com.au", "Captain America"));
+        this.employeeList.add(new employee("Tony Stark", "tony.stark@starkindustries.com.au", "Iron Man"));
+        this.employeeList.add(new employee("Peter Parker", "peter.parker@starkindustries.com.au", "Student/Intern"));
+
     }
 }

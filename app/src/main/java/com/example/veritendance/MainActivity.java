@@ -29,55 +29,73 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             // Begin a fragment transaction
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            // Remove the previous fragment and commit that change
-            ft.remove(currentFragment).commit();
+
             switch (item.getItemId()) {
                 case R.id.navigation_employees:
-                    // Create a new fragment transaction
-                    ft = getSupportFragmentManager().beginTransaction();
+                    if(currentFragment != employeeTab) {
+                        // Remove the previous fragment and commit that change
+                        ft.remove(currentFragment).commit();
+                        // Create a new fragment transaction
+                        ft = getSupportFragmentManager().beginTransaction();
 
-                    // Create a new Employee Fragment
-                    if(employeeTab == null) {
-                        employeeTab = new employeeFragment();
+                        // Create a new Employee Fragment
+                        if (employeeTab == null) {
+                            employeeTab = new employeeFragment();
+                        }
+                        currentFragment = employeeTab;
+                        // Using the fragment transaction, replace the fragment container with the new fragment
+                        ft.replace(R.id.fragment_container, currentFragment).commit();
                     }
-                    currentFragment = employeeTab;
-                    // Using the fragment transaction, replace the fragment container with the new fragment
-                    ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
                 case R.id.navigation_history:
-                    // Create a new fragment transaction
-                    ft = getSupportFragmentManager().beginTransaction();
-                    // Create a new history Fragment
-                    if(historyTab == null) {
-                        historyTab = new historyFragment();
-                    }
-                    currentFragment = historyTab;
-                    // Using the fragment transaction, replace the fragment container with the new fragment
-                    ft.replace(R.id.fragment_container, currentFragment).commit();
-                    return true;
-                case R.id.navigation_session:
-                    // Create a new fragment transaction
-                    ft = getSupportFragmentManager().beginTransaction();
-                    // Create a new session Fragment
-                    if(sessionTab == null) {
+                    if(currentFragment != historyTab) {
+                        // Remove the previous fragment and commit that change
+                        ft.remove(currentFragment).commit();
+
+                        // Create a new fragment transaction
+                        ft = getSupportFragmentManager().beginTransaction();
+                        // Create a new history Fragment
                         if(historyTab == null) {
                             historyTab = new historyFragment();
                         }
-                        sessionTab = new newSessionFragment(historyTab);
+                        currentFragment = historyTab;
+                        // Using the fragment transaction, replace the fragment container with the new fragment
+                        ft.replace(R.id.fragment_container, currentFragment).commit();
                     }
-                    currentFragment = sessionTab;
-                    ft.replace(R.id.fragment_container, currentFragment).commit();
+
+                    return true;
+                case R.id.navigation_session:
+
+                    if(currentFragment != sessionTab) {
+                        // Remove the previous fragment and commit that change
+                        ft.remove(currentFragment).commit();
+                        // Create a new fragment transaction
+                        ft = getSupportFragmentManager().beginTransaction();
+                        // Create a new session Fragment
+                        if(sessionTab == null) {
+                            if(historyTab == null) {
+                                historyTab = new historyFragment();
+                            }
+                            sessionTab = new newSessionFragment(historyTab);
+                        }
+                        currentFragment = sessionTab;
+                        ft.replace(R.id.fragment_container, currentFragment).commit();
+                    }
                     return true;
                 case R.id.navigation_topics:
-                    // Create a new fragment transaction
-                    ft = getSupportFragmentManager().beginTransaction();
-                    // Create a new topics Fragment
-                    if(topicsTab == null) {
-                        topicsTab = new topicsFragment();
+                    if(currentFragment != topicsTab) {
+                        // Remove the previous fragment and commit that change
+                        ft.remove(currentFragment).commit();
+                        // Create a new fragment transaction
+                        ft = getSupportFragmentManager().beginTransaction();
+                        // Create a new topics Fragment
+                        if(topicsTab == null) {
+                            topicsTab = new topicsFragment();
+                        }
+                        currentFragment = topicsTab;
+                        // Using the fragment transaction, replace the fragment container with the new fragment
+                        ft.replace(R.id.fragment_container, currentFragment).commit();
                     }
-                    currentFragment = topicsTab;
-                    // Using the fragment transaction, replace the fragment container with the new fragment
-                    ft.replace(R.id.fragment_container, currentFragment).commit();
                     return true;
             }
             return false;
