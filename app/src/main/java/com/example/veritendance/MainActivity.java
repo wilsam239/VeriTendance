@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             // Begin a fragment transaction
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-
             switch (item.getItemId()) {
                 case R.id.navigation_employees:
                     if(currentFragment != employeeTab) {
