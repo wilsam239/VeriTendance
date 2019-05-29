@@ -3,7 +3,6 @@ package com.example.veritendance.sessionFragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +16,19 @@ import com.example.veritendance.employeeFragments.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class emptySession extends Fragment implements View.OnClickListener {
+public class session extends Fragment implements View.OnClickListener {
     SimpleDateFormat formatter= new SimpleDateFormat("dd/MM/yy hh:mm a");
     private Date startTime;
     private String startTimeStr;
     private Date endTime;
     private String endTimeStr;
-    private List attendees = new ArrayList<employee>();
+    private ArrayList<employee> attendees = new ArrayList<>();
     protected TextView sessionPlaceholder;
     MainActivity main;
+    public newSessionFragment parentFragment;
 
-    //public emptySession(MainActivity m) { main = m;}
+    public session(newSessionFragment p) { parentFragment = p;}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class emptySession extends Fragment implements View.OnClickListener {
         endTimeStr = formatter.format(endTime);
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new sessionSummary(this)).commit();
+        ft.replace(R.id.fragment_container, new sessionSummary(this, parentFragment.historyTab)).commit();
     }
 
     public Date getStartTime() {

@@ -17,10 +17,10 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     // Begin the transaction
     private Fragment currentFragment;
-    private employeeFragment employeeTab = null;
-    private historyFragment historyTab = null;
-    private topicsFragment topicsTab = null;
-    private newSessionFragment sessionTab = null;
+    public employeeFragment employeeTab = null;
+    public historyFragment historyTab = null;
+    public topicsFragment topicsTab = null;
+    public newSessionFragment sessionTab = null;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,7 +60,10 @@ public class MainActivity extends AppCompatActivity {
                     ft = getSupportFragmentManager().beginTransaction();
                     // Create a new session Fragment
                     if(sessionTab == null) {
-                        sessionTab = new newSessionFragment();
+                        if(historyTab == null) {
+                            historyTab = new historyFragment();
+                        }
+                        sessionTab = new newSessionFragment(historyTab);
                     }
                     currentFragment = sessionTab;
                     ft.replace(R.id.fragment_container, currentFragment).commit();

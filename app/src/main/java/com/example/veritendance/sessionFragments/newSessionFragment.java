@@ -10,11 +10,14 @@ import android.widget.Button;
 
 import com.example.veritendance.MainActivity;
 import com.example.veritendance.R;
+import com.example.veritendance.historyFragment;
 
 public class newSessionFragment extends Fragment implements View.OnClickListener {
-    MainActivity main;
+    public MainActivity parent;
+    public historyFragment historyTab;
 
-    //public newSessionFragment(MainActivity m) { main = m;}
+    public newSessionFragment(MainActivity m) { parent = m;}
+    public newSessionFragment(historyFragment p) { historyTab = p;}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class newSessionFragment extends Fragment implements View.OnClickListener
 
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new emptySession()).commit();
+        ft.replace(R.id.fragment_container, new session(this)).commit();
     }
 }
 
