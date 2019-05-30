@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class session extends Fragment implements View.OnClickListener {
+    private RecyclerView attendeesView;
+    private RecyclerView.Adapter adapter;
+
     SimpleDateFormat formatter= new SimpleDateFormat("dd/MM/yy hh:mm a");
     private Date endTime;
     private Date startTime;
@@ -50,14 +55,21 @@ public class session extends Fragment implements View.OnClickListener {
 
         Button finishSession = (Button) view.findViewById(R.id.finishSession);
 
-        FloatingActionButton addAttendee = (FloatingActionButton) view.findViewById(R.id.newAttendeeButton);
-        addAttendee.setOnClickListener(this);
+        //FloatingActionButton addAttendee = (FloatingActionButton) view.findViewById(R.id.newAttendeeButton);
+        //addAttendee.setOnClickListener(this);
 
         finishSession.setTextColor(Color.parseColor("#ff0000"));
         if(attendees.size() != 0) {
             finishSession.setTextColor(Color.parseColor("#000000"));
             finishSession.setOnClickListener(this);
         }
+
+        this.attendeesView = (RecyclerView) view.findViewById(R.id.attendees);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
+        this.attendeesView.setLayoutManager(mLayoutManager);
+
+        adapter = new employeeAdapter(attendees);
+        this.attendeesView.setAdapter(adapter);
 
         return view;
     }
@@ -68,9 +80,9 @@ public class session extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.newAttendeeButton:
+            /*case R.id.newAttendeeButton:
 
-                break;
+                break;*/
             case R.id.finishSession:
                 endTime = new Date(System.currentTimeMillis());
                 endTimeStr = formatter.format(endTime);
