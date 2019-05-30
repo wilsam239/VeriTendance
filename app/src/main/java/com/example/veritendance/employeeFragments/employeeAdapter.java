@@ -12,6 +12,10 @@ import com.example.veritendance.R;
 import java.util.ArrayList;
 
 public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHolder> {
+    /**
+     * Employee adapter
+     * Used to connect the recycler view to data
+     */
 
     private ArrayList<employee> employees;
 
@@ -37,7 +41,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_employee, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_employee, parent, false);
         return new ViewHolder(v);
     }
 
@@ -51,7 +55,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        if(employees != null) {
+        if (employees != null) {
             return employees.size();
         } else {
             return 0;

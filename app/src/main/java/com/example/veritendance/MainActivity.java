@@ -9,12 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.veritendance.employeeFragments.*;
-import com.example.veritendance.historyPackage.historyFragment;
+import com.example.veritendance.historyFragments.historyFragment;
 import com.example.veritendance.sessionFragments.newSessionFragment;
+import com.example.veritendance.topicFragments.topicsFragment;
 
 public class MainActivity extends AppCompatActivity {
-    // Begin the transaction
+    // Create a Fragment that will be used in navigation
     private Fragment currentFragment;
+    // Create 4 different fragments to keep track of when a tab has been created
     public employeeFragment employeeTab = null;
     public historyFragment historyTab = null;
     public topicsFragment topicsTab = null;
@@ -27,9 +29,12 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             // Begin a fragment transaction
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
             switch (item.getItemId()) {
                 case R.id.navigation_employees:
-                    if(currentFragment != employeeTab) {
+                    // Each case checks if the currentFragment is the one that is being clicked on
+                    // If so, no change is required
+                    if (currentFragment != employeeTab) {
                         // Remove the previous fragment and commit that change
                         ft.remove(currentFragment).commit();
                         // Create a new fragment transaction
@@ -40,10 +45,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     return true;
                 case R.id.navigation_history:
-                    if(currentFragment != historyTab) {
+                    if (currentFragment != historyTab) {
                         // Remove the previous fragment and commit that change
                         ft.remove(currentFragment).commit();
-
                         // Create a new fragment transaction
                         ft = getSupportFragmentManager().beginTransaction();
                         currentFragment = historyTab;
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_session:
 
-                    if(currentFragment != sessionTab) {
+                    if (currentFragment != sessionTab) {
                         // Remove the previous fragment and commit that change
                         ft.remove(currentFragment).commit();
                         // Create a new fragment transaction
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     return true;
                 case R.id.navigation_topics:
-                    if(currentFragment != topicsTab) {
+                    if (currentFragment != topicsTab) {
                         // Remove the previous fragment and commit that change
                         ft.remove(currentFragment).commit();
                         // Create a new fragment transaction
@@ -85,13 +89,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Start a fragment transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        // Set the navigation item
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        // Set the item selected listener
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        // Create each tab
         employeeTab = new employeeFragment();
         historyTab = new historyFragment();
         topicsTab = new topicsFragment();
         sessionTab = new newSessionFragment(historyTab, topicsTab, employeeTab.getEmployeesList());
+        // Set the current tab to the employee tab
         currentFragment = employeeTab;
         // Replace the contents of the container with the new fragment
         ft.replace(R.id.fragment_container, currentFragment);

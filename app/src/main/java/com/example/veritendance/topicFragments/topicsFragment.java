@@ -1,10 +1,12 @@
-package com.example.veritendance;
+package com.example.veritendance.topicFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.veritendance.R;
 
 import java.util.ArrayList;
 
@@ -20,16 +22,18 @@ public class topicsFragment extends Fragment {
         topicList.add("Risk Assessment - Jobseeker");
         topicList.add("WfD Risk Assessment (Place)");
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.activity_topics, parent, false);
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        
+
     }
 
     public void appendTopic(String newTopic) {
-        if(!topicList.contains(newTopic)) topicList.add(newTopic);
+        if (!topicList.contains(newTopic)) topicList.add(newTopic);
     }
 }

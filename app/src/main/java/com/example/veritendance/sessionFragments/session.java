@@ -26,7 +26,7 @@ public class session extends Fragment implements View.OnClickListener {
     private RecyclerView attendeesView;
     private RecyclerView.Adapter adapter;
 
-    SimpleDateFormat formatter= new SimpleDateFormat("dd/MM/yy hh:mm a");
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mm a");
     private Date endTime;
     private Date startTime;
 
@@ -50,21 +50,21 @@ public class session extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.activity_empty_session, parent, false);
         startTime = new Date(System.currentTimeMillis());
         startTimeStr = formatter.format(startTime);
-        sessionPlaceholder = (TextView) view.findViewById(R.id.fragmentTitle);
+        sessionPlaceholder = view.findViewById(R.id.fragmentTitle);
         sessionPlaceholder.setText(startTimeStr.contains("PM") ? "Afternoon Session" : "Morning Session");
 
-        Button finishSession = (Button) view.findViewById(R.id.finishSession);
+        Button finishSession = view.findViewById(R.id.finishSession);
 
         //FloatingActionButton addAttendee = (FloatingActionButton) view.findViewById(R.id.newAttendeeButton);
         //addAttendee.setOnClickListener(this);
 
         finishSession.setTextColor(Color.parseColor("#ff0000"));
-        if(attendees.size() != 0) {
+        if (attendees.size() != 0) {
             finishSession.setTextColor(Color.parseColor("#000000"));
             finishSession.setOnClickListener(this);
         }
 
-        this.attendeesView = (RecyclerView) view.findViewById(R.id.attendees);
+        this.attendeesView = view.findViewById(R.id.attendees);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.attendeesView.setLayoutManager(mLayoutManager);
 
@@ -73,13 +73,15 @@ public class session extends Fragment implements View.OnClickListener {
 
         return view;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
     }
+
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
+        switch (v.getId()) {
             /*case R.id.newAttendeeButton:
 
                 break;*/
@@ -101,25 +103,33 @@ public class session extends Fragment implements View.OnClickListener {
         return endTime;
     }
 
-    public String getEndTimeStr() { return endTimeStr; }
+    public String getEndTimeStr() {
+        return endTimeStr;
+    }
 
-    public String getSessionName() { return sessionName; }
+    public String getSessionName() {
+        return sessionName;
+    }
 
-    public void setSessionName(String sessionName) { this.sessionName = sessionName; }
+    public void setSessionName(String sessionName) {
+        this.sessionName = sessionName;
+    }
 
     public void setScores() {
-        for(int i = 0; i < attendees.size(); i++) {
+        for (int i = 0; i < attendees.size(); i++) {
             scores.add(new Pair(attendees.get(i), 0));
         }
     }
 
     public int getPercentageComplete() {
         int total = 0;
-        for(int i = 0; i < scores.size(); i++) {
-            if(scores.get(i).second >= 50) total += scores.get(i).second;
+        for (int i = 0; i < scores.size(); i++) {
+            if (scores.get(i).second >= 50) total += scores.get(i).second;
         }
-        return total/scores.size();
+        return total / scores.size();
     }
 
-    public int getAttendeeCount() { return attendees.size(); }
+    public int getAttendeeCount() {
+        return attendees.size();
+    }
 }

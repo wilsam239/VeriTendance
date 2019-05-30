@@ -14,8 +14,14 @@ import com.example.veritendance.MainActivity;
 import com.example.veritendance.R;
 
 public class newEmployee extends Fragment implements View.OnClickListener {
+    /**
+     * New employee fragment
+     * Allows the user to enter a new employee
+     */
+
     employeeFragment parentFragment;
     View view;
+
     EditText name;
     EditText email;
     EditText occupation;
@@ -24,20 +30,22 @@ public class newEmployee extends Fragment implements View.OnClickListener {
     public newEmployee(employeeFragment p) {
         parentFragment = p;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_new_employee, parent, false);
-        ImageButton submitEmployee = (ImageButton) view.findViewById(R.id.submitEmployee);
+        ImageButton submitEmployee = view.findViewById(R.id.submitEmployee);
         submitEmployee.setOnClickListener(this);
-        name = (EditText) view.findViewById(R.id.nameInput);
-        email = (EditText) view.findViewById(R.id.mailInput);
-        occupation = (EditText) view.findViewById(R.id.occupationInput);
+        name = view.findViewById(R.id.nameInput);
+        email = view.findViewById(R.id.mailInput);
+        occupation = view.findViewById(R.id.occupationInput);
 
         return view;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        
+
     }
 
     @Override

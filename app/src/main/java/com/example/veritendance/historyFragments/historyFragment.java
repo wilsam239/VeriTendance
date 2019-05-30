@@ -1,4 +1,4 @@
-package com.example.veritendance.historyPackage;
+package com.example.veritendance.historyFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,17 +15,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class historyFragment extends Fragment {
+    /**
+     * History fragment
+     * Shows the activity_history layout
+     */
+
     private RecyclerView sessions;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<session> sessionList;
 
-    public historyFragment() {sessionList = new ArrayList<>();}
+    public historyFragment() {
+        sessionList = new ArrayList<>();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_history, parent, false);
-        this.sessions = (RecyclerView) view.findViewById(R.id.history);
+        this.sessions = view.findViewById(R.id.history);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.sessions.setLayoutManager(mLayoutManager);
 
@@ -34,9 +40,10 @@ public class historyFragment extends Fragment {
 
         return view;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        
+
     }
 
     public List getSessionList() {

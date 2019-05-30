@@ -1,6 +1,10 @@
 package com.example.veritendance.employeeFragments;
 
 public class employee {
+    /**
+     * Employee object
+     * Contains a name, email and occupation
+     */
 
     private String name;
     private String email;

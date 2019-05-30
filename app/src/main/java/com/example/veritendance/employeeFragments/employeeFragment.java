@@ -16,9 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class employeeFragment extends Fragment implements View.OnClickListener {
+    /**
+     * Employee Screen Fragment
+     * Shows the activity_employees layout
+     */
     private RecyclerView employees;
     private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
     private ArrayList<employee> employeeList;
 
     public employeeFragment() {
@@ -29,25 +32,26 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_employees, parent, false);
-        FloatingActionButton addNewEmployee = (FloatingActionButton) view.findViewById(R.id.newEmployeeButton);
+
+        // Create the floating action button and set it a listener
+        FloatingActionButton addNewEmployee = view.findViewById(R.id.newEmployeeButton);
         addNewEmployee.setOnClickListener(this);
-        //ArrayList<employee> employees= new ArrayList<employee>();
-        //employeeList.add(new employee());
-        //employeeList.add(new employee("Jackal", "twitch.tv/jackalgamerau", "streamer"));
-        //System.out.println(employees.get(0).getName());
-        this.employees = (RecyclerView) view.findViewById(R.id.employees);
+
+        // Create the recycler view and connect it to adapter and layout manager
+        this.employees = view.findViewById(R.id.employees);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.employees.setLayoutManager(mLayoutManager);
-
         adapter = new employeeAdapter(employeeList);
         this.employees.setAdapter(adapter);
 
         return view;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        
+
     }
+
     @Override
     public void onClick(View v) {
         // Begin a fragment transaction
@@ -64,6 +68,7 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
     }
 
     public void initialiseEmployees() {
+        // Create a few employees for startup
         this.employeeList.add(new employee("Sam Williamson", "sam.williamson@best.com.au", "Support Officer"));
         this.employeeList.add(new employee("Steve Rogers", "steve.rogers@avengers.com.au", "Captain America"));
         this.employeeList.add(new employee("Tony Stark", "tony.stark@starkindustries.com.au", "Iron Man"));

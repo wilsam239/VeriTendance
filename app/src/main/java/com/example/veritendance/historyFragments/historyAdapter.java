@@ -1,4 +1,4 @@
-package com.example.veritendance.historyPackage;
+package com.example.veritendance.historyFragments;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,14 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.example.veritendance.sessionFragments.session;
 import com.example.veritendance.R;
-import com.example.veritendance.employeeFragments.employee;
-import com.example.veritendance.employeeFragments.employeeAdapter;
 
 import java.util.ArrayList;
 
 public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHolder> {
+    /**
+     * History adapter
+     * Used to connect the recycler view to data
+     */
     private ArrayList<session> sessions;
 
     public historyAdapter(ArrayList<session> sessions) {
@@ -40,7 +43,7 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_session, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_session, parent, false);
         return new ViewHolder(v);
     }
 
@@ -55,7 +58,7 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        if(sessions != null) {
+        if (sessions != null) {
             return sessions.size();
         } else {
             return 0;

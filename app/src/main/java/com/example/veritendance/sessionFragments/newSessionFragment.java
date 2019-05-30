@@ -11,8 +11,8 @@ import android.widget.Button;
 import com.example.veritendance.MainActivity;
 import com.example.veritendance.R;
 import com.example.veritendance.employeeFragments.employee;
-import com.example.veritendance.historyPackage.historyFragment;
-import com.example.veritendance.topicsFragment;
+import com.example.veritendance.historyFragments.historyFragment;
+import com.example.veritendance.topicFragments.topicsFragment;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,10 @@ public class newSessionFragment extends Fragment implements View.OnClickListener
 
     private ArrayList<employee> employees;
 
-    public newSessionFragment(MainActivity m) { parent = m;}
+    public newSessionFragment(MainActivity m) {
+        parent = m;
+    }
+
     public newSessionFragment(historyFragment p, topicsFragment t, ArrayList<employee> employees) {
         historyTab = p;
         topicsTab = t;
@@ -33,14 +36,16 @@ public class newSessionFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_new_session, parent, false);
-        Button addEmptySession = (Button) view.findViewById(R.id.addEmptySessionButton);
+        Button addEmptySession = view.findViewById(R.id.addEmptySessionButton);
         addEmptySession.setOnClickListener(this);
         return view;
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
     }
+
     @Override
     public void onClick(View v) {
 
