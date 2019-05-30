@@ -87,7 +87,7 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     }
     @Override
     public void onClick(View v) {
-        concludedSession.setSessionName(sessionName.toString());
+        concludedSession.setSessionName(sessionNameTop.getText().toString());
         concludedSession.setScores();
         h.appendSession(concludedSession);
         t.appendTopic(sessionName.toString());

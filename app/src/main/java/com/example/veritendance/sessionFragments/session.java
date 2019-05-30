@@ -2,6 +2,7 @@ package com.example.veritendance.sessionFragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Pair;
@@ -27,14 +28,17 @@ public class session extends Fragment implements View.OnClickListener {
     private String startTimeStr;
     private String endTimeStr;
     private String sessionName;
-    private ArrayList<employee> attendees = new ArrayList<>();
+    private ArrayList<employee> attendees; // = new ArrayList<>();
     private ArrayList<Pair<employee, Integer>> scores = new ArrayList<>();
 
     protected TextView sessionPlaceholder;
     MainActivity main;
     public newSessionFragment parentFragment;
 
-    public session(newSessionFragment p) { parentFragment = p;}
+    public session(newSessionFragment p, ArrayList<employee> e) {
+        parentFragment = p;
+        attendees = e;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -43,7 +47,12 @@ public class session extends Fragment implements View.OnClickListener {
         startTimeStr = formatter.format(startTime);
         sessionPlaceholder = (TextView) view.findViewById(R.id.fragmentTitle);
         sessionPlaceholder.setText(startTimeStr.contains("PM") ? "Afternoon Session" : "Morning Session");
+
         Button finishSession = (Button) view.findViewById(R.id.finishSession);
+
+        FloatingActionButton addAttendee = (FloatingActionButton) view.findViewById(R.id.newAttendeeButton);
+        addAttendee.setOnClickListener(this);
+
         finishSession.setTextColor(Color.parseColor("#ff0000"));
         if(attendees.size() != 0) {
             finishSession.setTextColor(Color.parseColor("#000000"));
@@ -58,11 +67,18 @@ public class session extends Fragment implements View.OnClickListener {
     }
     @Override
     public void onClick(View v) {
-        endTime = new Date(System.currentTimeMillis());
-        endTimeStr = formatter.format(endTime);
-        // Begin a fragment transaction
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new sessionSummary(this, parentFragment.historyTab, parentFragment.topicsTab)).commit();
+        switch(v.getId()) {
+            case R.id.newAttendeeButton:
+
+                break;
+            case R.id.finishSession:
+                endTime = new Date(System.currentTimeMillis());
+                endTimeStr = formatter.format(endTime);
+                // Begin a fragment transaction
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, new sessionSummary(this, parentFragment.historyTab, parentFragment.topicsTab)).commit();
+                break;
+        }
     }
 
     public String getStartTimeStr() {

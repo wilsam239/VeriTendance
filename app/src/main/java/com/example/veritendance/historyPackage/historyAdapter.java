@@ -49,8 +49,8 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
         session s = sessions.get(i);
         holder.session_name.setText(s.getSessionName());
         holder.session_date.setText(s.getEndTimeStr());
-        holder.session_percentage_complete.setText(s.getPercentageComplete());
-        holder.session_attendee_count.setText(s.getAttendeeCount());
+        holder.session_percentage_complete.setText(Integer.toString(s.getPercentageComplete()).concat("% Complete"));
+        holder.session_attendee_count.setText(Integer.toString(s.getAttendeeCount()).concat(" Attendees"));
     }
 
     @Override

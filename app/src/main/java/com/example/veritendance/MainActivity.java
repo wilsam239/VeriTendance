@@ -34,11 +34,6 @@ public class MainActivity extends AppCompatActivity {
                         ft.remove(currentFragment).commit();
                         // Create a new fragment transaction
                         ft = getSupportFragmentManager().beginTransaction();
-
-                        // Create a new Employee Fragment
-                        if (employeeTab == null) {
-                            employeeTab = new employeeFragment();
-                        }
                         currentFragment = employeeTab;
                         // Using the fragment transaction, replace the fragment container with the new fragment
                         ft.replace(R.id.fragment_container, currentFragment).commit();
@@ -51,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
                         // Create a new fragment transaction
                         ft = getSupportFragmentManager().beginTransaction();
-                        // Create a new history Fragment
-                        if(historyTab == null) {
-                            historyTab = new historyFragment();
-                        }
                         currentFragment = historyTab;
                         // Using the fragment transaction, replace the fragment container with the new fragment
                         ft.replace(R.id.fragment_container, currentFragment).commit();
@@ -69,12 +60,6 @@ public class MainActivity extends AppCompatActivity {
                         // Create a new fragment transaction
                         ft = getSupportFragmentManager().beginTransaction();
                         // Create a new session Fragment
-                        if(sessionTab == null) {
-                            if(historyTab == null) {
-                                historyTab = new historyFragment();
-                            }
-                            sessionTab = new newSessionFragment(historyTab, topicsTab);
-                        }
                         currentFragment = sessionTab;
                         ft.replace(R.id.fragment_container, currentFragment).commit();
                     }
@@ -86,9 +71,6 @@ public class MainActivity extends AppCompatActivity {
                         // Create a new fragment transaction
                         ft = getSupportFragmentManager().beginTransaction();
                         // Create a new topics Fragment
-                        if(topicsTab == null) {
-                            topicsTab = new topicsFragment();
-                        }
                         currentFragment = topicsTab;
                         // Using the fragment transaction, replace the fragment container with the new fragment
                         ft.replace(R.id.fragment_container, currentFragment).commit();
@@ -106,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        currentFragment = new employeeFragment();
+        employeeTab = new employeeFragment();
+        historyTab = new historyFragment();
+        topicsTab = new topicsFragment();
+        sessionTab = new newSessionFragment(historyTab, topicsTab, employeeTab.getEmployeesList());
+        currentFragment = employeeTab;
         // Replace the contents of the container with the new fragment
         ft.replace(R.id.fragment_container, currentFragment);
         // Complete the changes added above

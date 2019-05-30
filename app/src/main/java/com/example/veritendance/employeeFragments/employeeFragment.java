@@ -55,7 +55,7 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
         ft.replace(R.id.fragment_container, new newEmployee(this)).commit();
     }
 
-    public List getEmployeesList() {
+    public ArrayList<employee> getEmployeesList() {
         return employeeList;
     }
 
