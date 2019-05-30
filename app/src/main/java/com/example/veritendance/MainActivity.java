@@ -9,10 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.veritendance.employeeFragments.*;
+import com.example.veritendance.historyPackage.historyFragment;
 import com.example.veritendance.sessionFragments.newSessionFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     // Begin the transaction
@@ -75,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                             if(historyTab == null) {
                                 historyTab = new historyFragment();
                             }
-                            sessionTab = new newSessionFragment(historyTab);
+                            sessionTab = new newSessionFragment(historyTab, topicsTab);
                         }
                         currentFragment = sessionTab;
                         ft.replace(R.id.fragment_container, currentFragment).commit();

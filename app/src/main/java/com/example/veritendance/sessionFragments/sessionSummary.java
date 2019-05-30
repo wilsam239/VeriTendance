@@ -11,9 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import com.example.veritendance.MainActivity;
-import com.example.veritendance.historyFragment;
+import com.example.veritendance.historyPackage.historyFragment;
 
 import com.example.veritendance.R;
+import com.example.veritendance.topicsFragment;
 
 import java.text.SimpleDateFormat;
 
@@ -27,10 +28,12 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     SimpleDateFormat formatter= new SimpleDateFormat("dd MMM. yyyy hh:mm:ss a");
     MainActivity main;
     public historyFragment h;
+    public topicsFragment t;
 
-    public sessionSummary(session sesh, historyFragment h) {
+    public sessionSummary(session sesh, historyFragment h, topicsFragment t) {
         this.concludedSession = sesh;
         this.h = h;
+        this.t = t;
     }
 
     @Override
@@ -84,7 +87,11 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     }
     @Override
     public void onClick(View v) {
+        concludedSession.setSessionName(sessionName.toString());
+        concludedSession.setScores();
         h.appendSession(concludedSession);
+        t.appendTopic(sessionName.toString());
+
          // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, concludedSession.parentFragment).commit();

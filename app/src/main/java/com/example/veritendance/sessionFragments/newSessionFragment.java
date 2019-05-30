@@ -10,14 +10,19 @@ import android.widget.Button;
 
 import com.example.veritendance.MainActivity;
 import com.example.veritendance.R;
-import com.example.veritendance.historyFragment;
+import com.example.veritendance.historyPackage.historyFragment;
+import com.example.veritendance.topicsFragment;
 
 public class newSessionFragment extends Fragment implements View.OnClickListener {
     public MainActivity parent;
     public historyFragment historyTab;
+    public topicsFragment topicsTab;
 
     public newSessionFragment(MainActivity m) { parent = m;}
-    public newSessionFragment(historyFragment p) { historyTab = p;}
+    public newSessionFragment(historyFragment p, topicsFragment t) {
+        historyTab = p;
+        topicsTab = t;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {

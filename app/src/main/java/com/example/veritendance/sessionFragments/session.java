@@ -1,8 +1,10 @@
 package com.example.veritendance.sessionFragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +21,15 @@ import java.util.Date;
 
 public class session extends Fragment implements View.OnClickListener {
     SimpleDateFormat formatter= new SimpleDateFormat("dd/MM/yy hh:mm a");
-    private Date startTime;
-    private String startTimeStr;
     private Date endTime;
+    private Date startTime;
+
+    private String startTimeStr;
     private String endTimeStr;
+    private String sessionName;
     private ArrayList<employee> attendees = new ArrayList<>();
+    private ArrayList<Pair<employee, Integer>> scores = new ArrayList<>();
+
     protected TextView sessionPlaceholder;
     MainActivity main;
     public newSessionFragment parentFragment;
@@ -38,7 +44,11 @@ public class session extends Fragment implements View.OnClickListener {
         sessionPlaceholder = (TextView) view.findViewById(R.id.fragmentTitle);
         sessionPlaceholder.setText(startTimeStr.contains("PM") ? "Afternoon Session" : "Morning Session");
         Button finishSession = (Button) view.findViewById(R.id.finishSession);
-        finishSession.setOnClickListener(this);
+        finishSession.setTextColor(Color.parseColor("#ff0000"));
+        if(attendees.size() != 0) {
+            finishSession.setTextColor(Color.parseColor("#000000"));
+            finishSession.setOnClickListener(this);
+        }
 
         return view;
     }
@@ -52,11 +62,7 @@ public class session extends Fragment implements View.OnClickListener {
         endTimeStr = formatter.format(endTime);
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new sessionSummary(this, parentFragment.historyTab)).commit();
-    }
-
-    public Date getStartTime() {
-        return startTime;
+        ft.replace(R.id.fragment_container, new sessionSummary(this, parentFragment.historyTab, parentFragment.topicsTab)).commit();
     }
 
     public String getStartTimeStr() {
@@ -67,7 +73,25 @@ public class session extends Fragment implements View.OnClickListener {
         return endTime;
     }
 
-    public String getEndTimeStr() {
-        return endTimeStr;
+    public String getEndTimeStr() { return endTimeStr; }
+
+    public String getSessionName() { return sessionName; }
+
+    public void setSessionName(String sessionName) { this.sessionName = sessionName; }
+
+    public void setScores() {
+        for(int i = 0; i < attendees.size(); i++) {
+            scores.add(new Pair(attendees.get(i), 0));
+        }
     }
+
+    public int getPercentageComplete() {
+        int total = 0;
+        for(int i = 0; i < scores.size(); i++) {
+            if(scores.get(i).second >= 50) total += scores.get(i).second;
+        }
+        return total/scores.size();
+    }
+
+    public int getAttendeeCount() { return attendees.size(); }
 }
