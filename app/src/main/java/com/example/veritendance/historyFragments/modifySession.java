@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +14,23 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.veritendance.R;
+import com.example.veritendance.employeeFragments.employee;
 import com.example.veritendance.sessionFragments.session;
+
+import java.util.ArrayList;
+
 
 public class modifySession extends Fragment implements View.OnClickListener {
     /**
      * Modify Session fragment
      * Allows the user to modify a past session
      */
+    private RecyclerView pairs;
+    private RecyclerView.Adapter adapter;
+    private ArrayList<Pair<employee, Integer>> scores;
 
-    historyFragment parentFragment;
-    View view;
+    private historyFragment parentFragment;
+    //private View view;
 
     private EditText title;
     private EditText startDate;
@@ -30,16 +40,17 @@ public class modifySession extends Fragment implements View.OnClickListener {
     private session editing;
     private int index;
 
-    @SuppressLint("ValidFragment")
     public modifySession(historyFragment p, session s, int index) {
         parentFragment = p;
         editing = s;
         this.index = index;
+        scores = editing.getScores();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_modify_session, parent, false);
+        View view = inflater.inflate(R.layout.activity_modify_session, parent, false);
+
 
 
         title = view.findViewById(R.id.sessionNameInput);
@@ -52,6 +63,12 @@ public class modifySession extends Fragment implements View.OnClickListener {
         title.setText(editing.getTitle());
         startDate.setText(editing.getStartTime());
         endDate.setText(editing.getEndTime());
+
+        this.pairs = view.findViewById(R.id.attendeesScores);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
+        this.pairs.setLayoutManager(mLayoutManager);
+        adapter = new pairsAdapter(scores, this, this.getContext());
+        this.pairs.setAdapter(adapter);
 
         return view;
     }
