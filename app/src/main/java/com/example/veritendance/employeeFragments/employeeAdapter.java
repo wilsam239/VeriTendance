@@ -24,12 +24,10 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
 
     private ArrayList<employee> employees;
     private employeeFragment parent;
-    private Context context;
 
     public employeeAdapter(ArrayList<employee> employees, employeeFragment f) {
         this.employees = employees;
         parent = f;
-        //context = c;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -38,11 +36,13 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         public final TextView employee_jobTitle;
         public final TextView employee_email;
         public final ImageButton edit;
+        public final ImageButton delete;
 
         public ViewHolder(View view) {
             super(view);
             this.view = view;
             edit = view.findViewById(R.id.editEmployeeButton);
+            delete = view.findViewById(R.id.deleteEmployeeButton);
             employee_name = view.findViewById(R.id.employee_name);
             employee_jobTitle = view.findViewById(R.id.employee_jobTitle);
             employee_email = view.findViewById(R.id.employee_email);
@@ -63,12 +63,23 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         holder.employee_jobTitle.setText(emp.getOccupation());
         holder.employee_email.setText(emp.getEmail());
         holder.edit.setVisibility(View.VISIBLE);
+        holder.delete.setVisibility(View.VISIBLE);
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)parent.getContext()).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ft.replace(R.id.fragment_container, new modifyEmployee(parent, emp, i)).commit();
+            }
+        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parent.removeEmployee(emp);
+                FragmentManager fm = ((AppCompatActivity)parent.getContext()).getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragment_container, parent).commit();
+
             }
         });
 

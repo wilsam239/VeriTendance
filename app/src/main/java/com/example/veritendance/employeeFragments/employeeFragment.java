@@ -64,16 +64,23 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
         ft.replace(R.id.fragment_container, new newEmployee(this)).commit();
     }
 
+    // Returnb the list of employees
     public ArrayList<employee> getEmployeesList() {
         return employeeList;
     }
 
+    // Append a new employee to the list
     public void appendEmployee(employee newEmployee) {
         this.employeeList.add(newEmployee);
     }
 
-    public void changeEmployee(employee changedEmployee, int i) {
-        this.employeeList.set(i, changedEmployee);
+    // Modify the employee at the parsed index
+    public void changeEmployee(employee changedEmployee, int i) { this.employeeList.set(i, changedEmployee); }
+
+    public void removeEmployee(employee employeeToBeRemoved) {
+        // Remove an employee and refresh the fragment
+        this.employeeList.remove(employeeToBeRemoved);
+        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
     public void initialiseEmployees() {

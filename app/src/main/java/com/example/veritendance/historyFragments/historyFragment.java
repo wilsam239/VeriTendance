@@ -58,4 +58,9 @@ public class historyFragment extends Fragment {
     public void changeSession(session editedSession, int index) {
         sessionList.set(index, editedSession);
     }
+
+    public void deleteSession(session sessionToBeRemoved) {
+        sessionList.remove(sessionToBeRemoved);
+        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
 }

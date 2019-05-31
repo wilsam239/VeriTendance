@@ -9,4 +9,7 @@
     <string name="title_new_employee">New Employee</string>
     <string name="modify_employee">Modify Employee</string>
     <string name="modify_session">Modify Session</string>
+    <string name="no_sessions_msg">No Sessions recorded yet! Go to the New Session page to start one.</string>
+    <string name="no_employees_msg">No Employees recorded. Press the + button below to add some</string>
+    <string name="no_employees_session_msg">You cannot start a session until there are employees to participate! Add some employees on the Employees tab!</string>
 </resources>

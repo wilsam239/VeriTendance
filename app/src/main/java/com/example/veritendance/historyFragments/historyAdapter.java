@@ -44,11 +44,13 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
         public final TextView session_attendee_count;
         public final TextView session_percentage_complete;
         public final ImageButton edit;
+        public final ImageButton delete;
 
         public ViewHolder(View view) {
             super(view);
             this.view = view;
             edit = view.findViewById(R.id.editSessionButton);
+            delete = view.findViewById(R.id.deleteSessionButton);
             session_name = view.findViewById(R.id.session_name);
             session_date = view.findViewById(R.id.session_date);
             session_attendee_count = view.findViewById(R.id.session_attendee_count);
@@ -76,6 +78,12 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
                 FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ft.replace(R.id.fragment_container, new modifySession(parent, s, i)).commit();
+            }
+        });
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parent.deleteSession(s);
             }
         });
     }
