@@ -1,121 +1,64 @@
 package com.example.veritendance.sessionFragments;
 
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
-import com.example.veritendance.MainActivity;
-import com.example.veritendance.R;
-import com.example.veritendance.employeeFragments.*;
+import com.example.veritendance.employeeFragments.employee;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class session extends Fragment implements View.OnClickListener {
-    private RecyclerView attendeesView;
-    private RecyclerView.Adapter adapter;
+public class session {
+    private String startTime;
+    private String endTime;
+    private String title;
+    private Date startDate;
+    private Date endDate;
 
-    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mm a");
-    private Date endTime;
-    private Date startTime;
+    private ArrayList<employee> attendees;
+    private ArrayList<Pair<employee, Integer>> scores;
 
-    private String startTimeStr;
-    private String endTimeStr;
-    private String sessionName;
-    private ArrayList<employee> attendees; // = new ArrayList<>();
-    private ArrayList<Pair<employee, Integer>> scores = new ArrayList<>();
-
-    protected TextView sessionPlaceholder;
-    MainActivity main;
-    public newSessionFragment parentFragment;
-
-    public session(newSessionFragment p, ArrayList<employee> e) {
-        parentFragment = p;
-        attendees = e;
+    public session(ArrayList<employee> employees) {
+        attendees = employees;
+        scores = new ArrayList<>();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_empty_session, parent, false);
-        startTime = new Date(System.currentTimeMillis());
-        startTimeStr = formatter.format(startTime);
-        sessionPlaceholder = view.findViewById(R.id.fragmentTitle);
-        sessionPlaceholder.setText(startTimeStr.contains("PM") ? "Afternoon Session" : "Morning Session");
-
-        Button finishSession = view.findViewById(R.id.finishSession);
-
-        //FloatingActionButton addAttendee = (FloatingActionButton) view.findViewById(R.id.newAttendeeButton);
-        //addAttendee.setOnClickListener(this);
-
-        finishSession.setTextColor(Color.parseColor("#ff0000"));
-        if (attendees.size() != 0) {
-            finishSession.setTextColor(Color.parseColor("#000000"));
-            finishSession.setOnClickListener(this);
-        }
-
-        this.attendeesView = view.findViewById(R.id.attendees);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
-        this.attendeesView.setLayoutManager(mLayoutManager);
-
-        adapter = new employeeAdapter(attendees);
-        this.attendeesView.setAdapter(adapter);
-
-        return view;
+    public String getStartTime() {
+        return startTime;
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            /*case R.id.newAttendeeButton:
-
-                break;*/
-            case R.id.finishSession:
-                endTime = new Date(System.currentTimeMillis());
-                endTimeStr = formatter.format(endTime);
-                // Begin a fragment transaction
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, new sessionSummary(this, parentFragment.historyTab, parentFragment.topicsTab)).commit();
-                break;
-        }
-    }
-
-    public String getStartTimeStr() {
-        return startTimeStr;
-    }
-
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public String getEndTimeStr() {
-        return endTimeStr;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
-    public String getSessionName() {
-        return sessionName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSessionName(String sessionName) {
-        this.sessionName = sessionName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setScores() {
+    public ArrayList<employee> getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(ArrayList<employee> attendees) {
+        this.attendees = attendees;
+    }
+
+    public ArrayList<Pair<employee, Integer>> getScores() {
+        return scores;
+    }
+
+    public void setDefaultScores() {
         for (int i = 0; i < attendees.size(); i++) {
             scores.add(new Pair(attendees.get(i), 0));
         }
@@ -124,12 +67,26 @@ public class session extends Fragment implements View.OnClickListener {
     public int getPercentageComplete() {
         int total = 0;
         for (int i = 0; i < scores.size(); i++) {
-            if (scores.get(i).second >= 50) total += scores.get(i).second;
+            if (scores.get(i).second >= 50) total++; //scores.get(i).second;
         }
-        return total / scores.size();
+        return (total / scores.size())*100;
     }
-
     public int getAttendeeCount() {
         return attendees.size();
+    }
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 }

@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                         ft.remove(currentFragment).commit();
                         // Create a new fragment transaction
                         ft = getSupportFragmentManager().beginTransaction();
-                        // Create a new session Fragment
+                        // Create a new sessionFragment Fragment
                         currentFragment = sessionTab;
                         ft.replace(R.id.fragment_container, currentFragment).commit();
                     }
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         employeeTab = new employeeFragment();
         historyTab = new historyFragment();
         topicsTab = new topicsFragment();
-        sessionTab = new newSessionFragment(historyTab, topicsTab, employeeTab.getEmployeesList());
+        sessionTab = new newSessionFragment(this, historyTab, topicsTab, employeeTab.getEmployeesList());
         // Set the current tab to the employee tab
         currentFragment = employeeTab;
         // Replace the contents of the container with the new fragment
@@ -107,4 +107,8 @@ public class MainActivity extends AppCompatActivity {
         // Complete the changes added above
         ft.commit();
     }
+
+    /*public changeNavItem(int id) {
+
+    }*/
 }

@@ -22,9 +22,11 @@ public class historyFragment extends Fragment {
 
     private RecyclerView sessions;
     private RecyclerView.Adapter adapter;
+    private ArrayList<sessionFragment> sessionFragmentList;
     private ArrayList<session> sessionList;
 
     public historyFragment() {
+        sessionFragmentList = new ArrayList<>();
         sessionList = new ArrayList<>();
     }
 
@@ -35,6 +37,7 @@ public class historyFragment extends Fragment {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.sessions.setLayoutManager(mLayoutManager);
 
+        //adapter = new historyAdapter(sessionFragmentList);
         adapter = new historyAdapter(sessionList);
         this.sessions.setAdapter(adapter);
 
@@ -46,11 +49,15 @@ public class historyFragment extends Fragment {
 
     }
 
-    public List getSessionList() {
-        return sessionList;
+    public List getSessionFragmentList() {
+        return sessionFragmentList;
     }
 
     public void appendSession(session newSession) {
-        this.sessionList.add(newSession);
+        sessionList.add(newSession);
+    }
+
+    public void appendSession(sessionFragment newSessionFragment) {
+        this.sessionFragmentList.add(newSessionFragment);
     }
 }

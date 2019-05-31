@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.veritendance.sessionFragments.session;
+import com.example.veritendance.sessionFragments.sessionFragment;
 import com.example.veritendance.R;
 
 import java.util.ArrayList;
@@ -17,7 +18,12 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
      * History adapter
      * Used to connect the recycler view to data
      */
+    private ArrayList<sessionFragment> sessionFragments;
     private ArrayList<session> sessions;
+
+    /*public historyAdapter(ArrayList<sessionFragment> sessionFragments) {
+        this.sessionFragments = sessionFragments;
+    }*/
 
     public historyAdapter(ArrayList<session> sessions) {
         this.sessions = sessions;
@@ -50,10 +56,15 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
         session s = sessions.get(i);
+        holder.session_name.setText(s.getTitle());
+        holder.session_date.setText(s.getEndTime());
+        holder.session_percentage_complete.setText(Integer.toString(s.getPercentageComplete()).concat("% Complete"));
+        holder.session_attendee_count.setText(Integer.toString(s.getAttendeeCount()).concat(" Attendees"));
+        /*sessionFragment s = sessionFragments.get(i);
         holder.session_name.setText(s.getSessionName());
         holder.session_date.setText(s.getEndTimeStr());
         holder.session_percentage_complete.setText(Integer.toString(s.getPercentageComplete()).concat("% Complete"));
-        holder.session_attendee_count.setText(Integer.toString(s.getAttendeeCount()).concat(" Attendees"));
+        holder.session_attendee_count.setText(Integer.toString(s.getAttendeeCount()).concat(" Attendees"));*/
     }
 
     @Override
@@ -63,6 +74,13 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
         } else {
             return 0;
         }
+
+        /*
+        if (sessionFragments != null) {
+            return sessionFragments.size();
+        } else {
+            return 0;
+        }*/
     }
 
 

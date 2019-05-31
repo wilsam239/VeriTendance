@@ -1,5 +1,6 @@
 package com.example.veritendance.sessionFragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -30,32 +31,38 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     private TextView sessionName;
     private TextView sessionNameTop;
     private session concludedSession;
-    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM. yyyy hh:mm:ss a");
-    MainActivity main;
+    private sessionFragment parent;
+
+    private SimpleDateFormat formatter = new SimpleDateFormat("dd MMM. yyyy hh:mm:ss a");
+
+    public MainActivity main;
     public historyFragment h;
     public topicsFragment t;
 
-    public sessionSummary(session sesh, historyFragment h, topicsFragment t) {
-        this.concludedSession = sesh;
+    @SuppressLint("ValidFragment")
+     public sessionSummary(sessionFragment frag, session s, historyFragment h, topicsFragment t) {
+        concludedSession = s;
         this.h = h;
         this.t = t;
-    }
+        parent = frag;
+
+     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_session_summary, parent, false);
 
         startTime = view.findViewById(R.id.startTime);
-        startTime.setText(concludedSession.getStartTimeStr());
+        startTime.setText(concludedSession.getStartTime());
 
         endTime = view.findViewById(R.id.endTime);
-        endTime.setText(concludedSession.getEndTimeStr());
+        endTime.setText(concludedSession.getEndTime());
 
         endTimeTop = view.findViewById(R.id.endTimePlaceholderTop);
-        endTimeTop.setText(formatter.format(concludedSession.getEndTime()));
+        endTimeTop.setText(formatter.format(concludedSession.getEndDate()));
 
         sessionName = view.findViewById(R.id.sessionName);
-        sessionName.setText(concludedSession.getStartTimeStr().contains("PM") ? "Afternoon Session" : "Morning Session");
+        sessionName.setText(concludedSession.getStartTime().contains("PM") ? "Afternoon Session" : "Morning Session");
 
 
         sessionNameTop = view.findViewById(R.id.sessionPlaceholder);
@@ -94,14 +101,17 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        concludedSession.setSessionName(sessionNameTop.getText().toString());
-        concludedSession.setScores();
+        concludedSession.setTitle(sessionNameTop.getText().toString());
+        concludedSession.setDefaultScores();
+        //concludedSessionFragment.setSessionName(sessionNameTop.getText().toString());
+        //concludedSessionFragment.setScores();
         h.appendSession(concludedSession);
+        //h.appendSession(concludedSessionFragment);
         t.appendTopic(sessionNameTop.getText().toString());
 
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, concludedSession.parentFragment).commit();
+        ft.replace(R.id.fragment_container, h).commit();
     }
 
 }

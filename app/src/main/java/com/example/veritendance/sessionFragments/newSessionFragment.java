@@ -1,5 +1,6 @@
 package com.example.veritendance.sessionFragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -20,17 +21,16 @@ public class newSessionFragment extends Fragment implements View.OnClickListener
     public MainActivity parent;
     public historyFragment historyTab;
     public topicsFragment topicsTab;
+    public MainActivity main;
 
     private ArrayList<employee> employees;
 
-    public newSessionFragment(MainActivity m) {
-        parent = m;
-    }
-
-    public newSessionFragment(historyFragment p, topicsFragment t, ArrayList<employee> employees) {
+    @SuppressLint("ValidFragment")
+    public newSessionFragment(MainActivity m, historyFragment p, topicsFragment t, ArrayList<employee> employees) {
         historyTab = p;
         topicsTab = t;
         this.employees = employees;
+        main = m;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class newSessionFragment extends Fragment implements View.OnClickListener
 
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new session(this, employees)).commit();
+        ft.replace(R.id.fragment_container, new sessionFragment(this, employees)).commit();
     }
 }
 
