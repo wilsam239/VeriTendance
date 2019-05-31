@@ -77,11 +77,12 @@ public class session {
         for (int i = 0; i < scores.size(); i++) {
             if (scores.get(i).second >= 50) total++; //scores.get(i).second;
         }
-        return (total / scores.size())*100;
+        return Math.round(((float)total / scores.size())*100);
     }
     public int getAttendeeCount() {
-        return attendees.size();
+        return scores.size();
     }
+
     public Date getStartDate() {
         return startDate;
     }
@@ -96,5 +97,9 @@ public class session {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public void changeScore(Pair<employee, Integer> newScore, int index) {
+        scores.set(index, newScore);
     }
 }

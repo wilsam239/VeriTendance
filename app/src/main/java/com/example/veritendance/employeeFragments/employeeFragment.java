@@ -46,7 +46,7 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
         this.employees = view.findViewById(R.id.employees);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.employees.setLayoutManager(mLayoutManager);
-        adapter = new employeeAdapter(employeeList, this, this.getContext());
+        adapter = new employeeAdapter(employeeList, this);
         this.employees.setAdapter(adapter);
 
         return view;

@@ -25,16 +25,11 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
     private ArrayList<employee> employees;
     private employeeFragment parent;
     private Context context;
-    /*public employeeAdapter(ArrayList<employee> employees, OnItemClickListener listener) {
-        this.employees = employees;
-        this.listener = listener;
-    }*/
 
-    public employeeAdapter(ArrayList<employee> employees) {this.employees = employees;}
-    public employeeAdapter(ArrayList<employee> employees, employeeFragment f, Context c) {
+    public employeeAdapter(ArrayList<employee> employees, employeeFragment f) {
         this.employees = employees;
         parent = f;
-        context = c;
+        //context = c;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,7 +66,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
+                FragmentManager fm = ((AppCompatActivity)parent.getContext()).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ft.replace(R.id.fragment_container, new modifyEmployee(parent, emp, i)).commit();
             }

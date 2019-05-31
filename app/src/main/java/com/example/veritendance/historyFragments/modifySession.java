@@ -29,7 +29,7 @@ public class modifySession extends Fragment implements View.OnClickListener {
     private RecyclerView.Adapter adapter;
     private ArrayList<Pair<employee, Integer>> scores;
 
-    private historyFragment parentFragment;
+    public historyFragment parentFragment;
     //private View view;
 
     private EditText title;
@@ -67,7 +67,7 @@ public class modifySession extends Fragment implements View.OnClickListener {
         this.pairs = view.findViewById(R.id.attendeesScores);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.pairs.setLayoutManager(mLayoutManager);
-        adapter = new pairsAdapter(scores, this, this.getContext());
+        adapter = new pairsAdapter(scores, this);
         this.pairs.setAdapter(adapter);
 
         return view;
@@ -84,5 +84,9 @@ public class modifySession extends Fragment implements View.OnClickListener {
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, parentFragment).commit();
+    }
+
+    public void changeScores(Pair<employee, Integer> newScore, int index) {
+        editing.changeScore(newScore, index);
     }
 }

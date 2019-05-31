@@ -3,6 +3,8 @@ package com.example.veritendance.historyFragments;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,10 +24,9 @@ public class pairsAdapter extends RecyclerView.Adapter<pairsAdapter.ViewHolder> 
     private modifySession parent;
     private Context context;
 
-    public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, modifySession parent, Context context) {
+    public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, modifySession m) {
         this.pairs = pairs;
-        this.parent = parent;
-        this.context = context;
+        parent = m;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -38,25 +39,50 @@ public class pairsAdapter extends RecyclerView.Adapter<pairsAdapter.ViewHolder> 
             this.view = view;
             employee_name = view.findViewById(R.id.attendeeNamePair);
             employee_score = view.findViewById(R.id.attendeeScorePair);
+
         }
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pair, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        Pair<employee, Integer> att = pairs.get(i);
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int i) {
+        final Pair<employee, Integer> att = pairs.get(i);
         holder.employee_name.setText(att.first.getName());
         holder.employee_score.setText(att.second.toString());
+        // Creates a TextWatcher so that when the sessionName is changed, it updates the top label
+        TextWatcher scoreTextWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(!holder.employee_score.getText().toString().equals("")) {
+                    int score = Integer.parseInt(holder.employee_score.getText().toString());
+
+                    parent.changeScores(new Pair(pairs.get(i).first, score <= 100 ? score : 100), i);
+                }
+            }
+        };
+
+        holder.employee_score.addTextChangedListener(scoreTextWatcher);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if (pairs != null) return pairs.size();
+        else return 0;
     }
 }
