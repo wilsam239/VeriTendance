@@ -40,7 +40,7 @@ public class historyFragment extends Fragment {
         TextView noSession = (TextView) view.findViewById(R.id.noHistory);
         noSession.setVisibility(sessionList.size() == 0 ? View.VISIBLE : View.INVISIBLE);
         //adapter = new historyAdapter(sessionFragmentList);
-        adapter = new historyAdapter(sessionList);
+        adapter = new historyAdapter(sessionList, this.getContext(), this);
         this.sessions.setAdapter(adapter);
 
         return view;
@@ -51,15 +51,11 @@ public class historyFragment extends Fragment {
 
     }
 
-    public List getSessionFragmentList() {
-        return sessionFragmentList;
-    }
-
     public void appendSession(session newSession) {
         sessionList.add(newSession);
     }
 
-    public void appendSession(sessionFragment newSessionFragment) {
-        this.sessionFragmentList.add(newSessionFragment);
+    public void changeSession(session editedSession, int index) {
+        sessionList.set(index, editedSession);
     }
 }

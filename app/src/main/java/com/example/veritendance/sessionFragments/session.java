@@ -22,6 +22,14 @@ public class session {
         scores = new ArrayList<>();
     }
 
+    public session(String title, String startTime, String endTime, ArrayList<employee> attendees,ArrayList<Pair<employee, Integer>> scores) {
+        this.title = title;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.scores = scores;
+        this.attendees = attendees;
+    }
+
     public String getStartTime() {
         return startTime;
     }

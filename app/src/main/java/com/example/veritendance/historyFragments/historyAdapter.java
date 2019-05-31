@@ -1,10 +1,15 @@
 package com.example.veritendance.historyFragments;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.veritendance.sessionFragments.session;
@@ -18,15 +23,18 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
      * History adapter
      * Used to connect the recycler view to data
      */
-    private ArrayList<sessionFragment> sessionFragments;
+    private historyFragment parent;
     private ArrayList<session> sessions;
+    private Context context;
 
     /*public historyAdapter(ArrayList<sessionFragment> sessionFragments) {
         this.sessionFragments = sessionFragments;
     }*/
 
-    public historyAdapter(ArrayList<session> sessions) {
+    public historyAdapter(ArrayList<session> sessions, Context c, historyFragment h) {
         this.sessions = sessions;
+        context = c;
+        parent = h;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -35,10 +43,12 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
         public final TextView session_date;
         public final TextView session_attendee_count;
         public final TextView session_percentage_complete;
+        public final ImageButton edit;
 
         public ViewHolder(View view) {
             super(view);
             this.view = view;
+            edit = view.findViewById(R.id.editSessionButton);
             session_name = view.findViewById(R.id.session_name);
             session_date = view.findViewById(R.id.session_date);
             session_attendee_count = view.findViewById(R.id.session_attendee_count);
@@ -54,17 +64,20 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        session s = sessions.get(i);
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int i) {
+        final session s = sessions.get(i);
         holder.session_name.setText(s.getTitle());
         holder.session_date.setText(s.getEndTime());
         holder.session_percentage_complete.setText(Integer.toString(s.getPercentageComplete()).concat("% Complete"));
         holder.session_attendee_count.setText(Integer.toString(s.getAttendeeCount()).concat(" Attendees"));
-        /*sessionFragment s = sessionFragments.get(i);
-        holder.session_name.setText(s.getSessionName());
-        holder.session_date.setText(s.getEndTimeStr());
-        holder.session_percentage_complete.setText(Integer.toString(s.getPercentageComplete()).concat("% Complete"));
-        holder.session_attendee_count.setText(Integer.toString(s.getAttendeeCount()).concat(" Attendees"));*/
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragment_container, new modifySession(parent, s, i)).commit();
+            }
+        });
     }
 
     @Override
@@ -74,13 +87,6 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
         } else {
             return 0;
         }
-
-        /*
-        if (sessionFragments != null) {
-            return sessionFragments.size();
-        } else {
-            return 0;
-        }*/
     }
 
 

@@ -1,13 +1,10 @@
 package com.example.veritendance.employeeFragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +23,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
      */
 
     private ArrayList<employee> employees;
-    private employeeFragment frag;
+    private employeeFragment parent;
     private Context context;
     /*public employeeAdapter(ArrayList<employee> employees, OnItemClickListener listener) {
         this.employees = employees;
@@ -36,7 +33,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
     public employeeAdapter(ArrayList<employee> employees) {this.employees = employees;}
     public employeeAdapter(ArrayList<employee> employees, employeeFragment f, Context c) {
         this.employees = employees;
-        frag = f;
+        parent = f;
         context = c;
     }
 
@@ -76,7 +73,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment_container, new modifyEmployee(frag, emp, i)).commit();
+                ft.replace(R.id.fragment_container, new modifyEmployee(parent, emp, i)).commit();
             }
         });
 
