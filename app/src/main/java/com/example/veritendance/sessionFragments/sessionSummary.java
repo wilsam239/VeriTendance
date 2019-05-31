@@ -111,7 +111,7 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
 
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, h).commit();
+        ft.replace(R.id.fragment_container, parent.parentFragment).commit();
     }
 
 }

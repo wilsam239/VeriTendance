@@ -87,8 +87,6 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
             case R.id.finishSession:
                 currentSession.setEndDate(new Date(System.currentTimeMillis()));
                 currentSession.setEndTime(formatter.format(currentSession.getEndDate()));
-                //endTime = new Date(System.currentTimeMillis());
-                //endTimeStr = formatter.format(endTime);
                 // Begin a fragment transaction
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_container, new sessionSummary(this, currentSession, parentFragment.historyTab, parentFragment.topicsTab)).commit();

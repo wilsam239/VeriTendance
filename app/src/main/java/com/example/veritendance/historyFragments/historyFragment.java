@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.veritendance.R;
 import com.example.veritendance.sessionFragments.*;
@@ -36,7 +37,8 @@ public class historyFragment extends Fragment {
         this.sessions = view.findViewById(R.id.history);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.sessions.setLayoutManager(mLayoutManager);
-
+        TextView noSession = (TextView) view.findViewById(R.id.noHistory);
+        noSession.setVisibility(sessionList.size() == 0 ? View.VISIBLE : View.INVISIBLE);
         //adapter = new historyAdapter(sessionFragmentList);
         adapter = new historyAdapter(sessionList);
         this.sessions.setAdapter(adapter);

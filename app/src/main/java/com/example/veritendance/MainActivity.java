@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     public topicsFragment topicsTab = null;
     public newSessionFragment sessionTab = null;
 
+    private BottomNavigationView bottomNavigationView;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -92,14 +94,14 @@ public class MainActivity extends AppCompatActivity {
         // Start a fragment transaction
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         // Set the navigation item
-        BottomNavigationView navigation = findViewById(R.id.navigation);
+        bottomNavigationView = findViewById(R.id.navigation);
         // Set the item selected listener
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         // Create each tab
         employeeTab = new employeeFragment();
         historyTab = new historyFragment();
         topicsTab = new topicsFragment();
-        sessionTab = new newSessionFragment(this, historyTab, topicsTab, employeeTab.getEmployeesList());
+        sessionTab = new newSessionFragment(historyTab, topicsTab, employeeTab.getEmployeesList());
         // Set the current tab to the employee tab
         currentFragment = employeeTab;
         // Replace the contents of the container with the new fragment
@@ -107,8 +109,4 @@ public class MainActivity extends AppCompatActivity {
         // Complete the changes added above
         ft.commit();
     }
-
-    /*public changeNavItem(int id) {
-
-    }*/
 }
