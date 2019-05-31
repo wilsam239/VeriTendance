@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.veritendance.R;
@@ -45,7 +46,7 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
         this.employees = view.findViewById(R.id.employees);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.employees.setLayoutManager(mLayoutManager);
-        adapter = new employeeAdapter(employeeList);
+        adapter = new employeeAdapter(employeeList, this, this.getContext());
         this.employees.setAdapter(adapter);
 
         return view;
@@ -71,12 +72,16 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
         this.employeeList.add(newEmployee);
     }
 
+    public void changeEmployee(employee changedEmployee, int i) {
+        this.employeeList.set(i, changedEmployee);
+    }
+
     public void initialiseEmployees() {
         // Create a few employees for startup
-        /*this.employeeList.add(new employee("Sam Williamson", "sam.williamson@best.com.au", "Support Officer"));
+        this.employeeList.add(new employee("Sam Williamson", "sam.williamson@best.com.au", "Support Officer"));
         this.employeeList.add(new employee("Steve Rogers", "steve.rogers@avengers.com.au", "Captain America"));
         this.employeeList.add(new employee("Tony Stark", "tony.stark@starkindustries.com.au", "Iron Man"));
-        this.employeeList.add(new employee("Peter Parker", "peter.parker@starkindustries.com.au", "Student/Intern"));*/
+        this.employeeList.add(new employee("Peter Parker", "peter.parker@starkindustries.com.au", "Student/Intern"));
 
     }
 }

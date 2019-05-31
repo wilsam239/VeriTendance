@@ -67,7 +67,7 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.attendeesView.setLayoutManager(mLayoutManager);
 
-        adapter = new employeeAdapter(attendees);
+        adapter = new employeeAdapterNoEdit(attendees);
         this.attendeesView.setAdapter(adapter);
 
         return view;

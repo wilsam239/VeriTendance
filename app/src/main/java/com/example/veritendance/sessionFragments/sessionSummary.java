@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.example.veritendance.topicFragments.topicsFragment;
 
 import java.text.SimpleDateFormat;
 
+@SuppressLint("ValidFragment")
 public class sessionSummary extends Fragment implements View.OnClickListener {
     /**
      * Session Summary fragment
@@ -30,6 +32,7 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     private TextView endTimeTop;
     private TextView sessionName;
     private TextView sessionNameTop;
+    private CheckBox save;
     private session concludedSession;
     private sessionFragment parent;
 
@@ -39,18 +42,19 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     public historyFragment h;
     public topicsFragment t;
 
-    @SuppressLint("ValidFragment")
-     public sessionSummary(sessionFragment frag, session s, historyFragment h, topicsFragment t) {
+    public sessionSummary(sessionFragment frag, session s, historyFragment h, topicsFragment t) {
         concludedSession = s;
         this.h = h;
         this.t = t;
         parent = frag;
 
-     }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_session_summary, parent, false);
+
+        save = (CheckBox) view.findViewById(R.id.saveSession);
 
         startTime = view.findViewById(R.id.startTime);
         startTime.setText(concludedSession.getStartTime());
@@ -103,11 +107,9 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         concludedSession.setTitle(sessionNameTop.getText().toString());
         concludedSession.setDefaultScores();
-        //concludedSessionFragment.setSessionName(sessionNameTop.getText().toString());
-        //concludedSessionFragment.setScores();
+
+        if(save.isChecked()) t.appendTopic(sessionNameTop.getText().toString());
         h.appendSession(concludedSession);
-        //h.appendSession(concludedSessionFragment);
-        t.appendTopic(sessionNameTop.getText().toString());
 
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();

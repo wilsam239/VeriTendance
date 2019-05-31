@@ -1,13 +1,10 @@
 package com.example.veritendance.employeeFragments;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +16,7 @@ import com.example.veritendance.R;
 
 import java.util.ArrayList;
 
-public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHolder> {
+public class employeeAdapterNoEdit extends RecyclerView.Adapter<employeeAdapterNoEdit.ViewHolder> {
     /**
      * Employee adapter
      * Used to connect the recycler view to data
@@ -33,8 +30,8 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         this.listener = listener;
     }*/
 
-    public employeeAdapter(ArrayList<employee> employees) {this.employees = employees;}
-    public employeeAdapter(ArrayList<employee> employees, employeeFragment f, Context c) {
+    public employeeAdapterNoEdit(ArrayList<employee> employees) {this.employees = employees;}
+    public employeeAdapterNoEdit(ArrayList<employee> employees, employeeFragment f, Context c) {
         this.employees = employees;
         frag = f;
         context = c;
@@ -45,12 +42,10 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         public final TextView employee_name;
         public final TextView employee_jobTitle;
         public final TextView employee_email;
-        public final ImageButton edit;
 
         public ViewHolder(View view) {
             super(view);
             this.view = view;
-            edit = view.findViewById(R.id.editEmployeeButton);
             employee_name = view.findViewById(R.id.employee_name);
             employee_jobTitle = view.findViewById(R.id.employee_jobTitle);
             employee_email = view.findViewById(R.id.employee_email);
@@ -70,16 +65,6 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         holder.employee_name.setText(emp.getName());
         holder.employee_jobTitle.setText(emp.getOccupation());
         holder.employee_email.setText(emp.getEmail());
-        holder.edit.setVisibility(View.VISIBLE);
-        holder.edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment_container, new modifyEmployee(frag, emp, i)).commit();
-            }
-        });
-
     }
 
     @Override

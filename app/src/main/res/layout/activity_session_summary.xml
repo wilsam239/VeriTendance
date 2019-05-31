@@ -85,96 +85,139 @@
         app:layout_constraintTop_toBottomOf="@+id/SessionSummaryCardView"
         tools:layout_editor_absoluteX="0dp">
 
-        <TextView
-            android:id="@+id/startTimeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="72dp"
-            android:text="Start Time"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/sessionNotesLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="180dp"
-            android:text="Session Notes"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/endTimeLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="126dp"
-            android:text="End Time"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/sessionName"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="36dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text=""
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:translationX="150dp" />
-
-        <TextView
-            android:id="@+id/endTime"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="24dp"
-            android:layout_marginTop="126dp"
-            android:gravity="right"
-            android:paddingRight="16dp"
-            android:text="End Time Here"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/sessionNotes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="216dp"
-            android:layout_marginEnd="36dp"
-            android:ems="10"
-            android:inputType="text"
-            android:text=""
-            android:textSize="15sp"
-            android:translationX="16dp" />
+            <TextView
+                android:id="@+id/startTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="30dp"
+                android:text="Start Time"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sessionNameLabel" />
 
-        <TextView
-            android:id="@+id/startTime"
-            android:layout_width="match_parent"
-            android:layout_height="24dp"
-            android:layout_marginTop="72dp"
-            android:gravity="right"
-            android:paddingRight="16dp"
-            android:text="Start Time Here"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/sessionNotesLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="31dp"
+                android:text="Session Notes"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/endTimeLabel" />
 
-        <TextView
-            android:id="@+id/sessionNameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="18dp"
-            android:text="Session Name"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/endTimeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="30dp"
+                android:text="End Time"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/startTimeLabel" />
+
+            <EditText
+                android:id="@+id/sessionName"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text=""
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/endTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="33dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:gravity="right"
+                android:paddingRight="16dp"
+                android:text="End Time Here"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/startTime" />
+
+            <EditText
+                android:id="@+id/sessionNotes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text=""
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sessionNotesLabel" />
+
+            <TextView
+                android:id="@+id/startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:gravity="right"
+                android:paddingRight="16dp"
+                android:text="Start Time Here"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sessionName" />
+
+            <TextView
+                android:id="@+id/sessionNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="18dp"
+                android:text="Session Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Space
+                android:layout_width="35dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="192dp"
+                android:layout_marginLeft="192dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sessionNotes" />
+
+            <CheckBox
+                android:id="@+id/saveSession"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="29dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Save session as a topic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/endTime" />
+        </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
 
