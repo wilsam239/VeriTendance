@@ -39,7 +39,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="YOu cannot start a session until there are employees to participate! Add some employees on the Employees tab!"
+        android:text="You cannot start a session until there are employees to participate! Add some employees on the Employees tab!"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

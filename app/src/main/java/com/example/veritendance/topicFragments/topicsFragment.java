@@ -2,6 +2,8 @@ package com.example.veritendance.topicFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,9 @@ import com.example.veritendance.R;
 import java.util.ArrayList;
 
 public class topicsFragment extends Fragment {
-    ArrayList<String> topicList;
+    private RecyclerView topics;
+    private RecyclerView.Adapter adapter;
+    private ArrayList<String> topicList;
 
     public topicsFragment() {
         topicList = new ArrayList<>();
@@ -25,7 +29,14 @@ public class topicsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_topics, parent, false);
+        View view = inflater.inflate(R.layout.activity_topics, parent, false);
+
+        this.topics = view.findViewById(R.id.topics);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
+        this.topics.setLayoutManager(mLayoutManager);
+        adapter = new topicAdapter(topicList);
+        this.topics.setAdapter(adapter);
+        return view;
     }
 
     @Override
