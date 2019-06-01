@@ -7,6 +7,7 @@ public class topic {
 
     public topic(String title, String description) {
         this.title = title;
+        this.description = description;
     }
 
     public topic(String title) {
