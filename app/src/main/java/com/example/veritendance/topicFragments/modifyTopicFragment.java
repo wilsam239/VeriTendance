@@ -37,12 +37,12 @@ public class modifyTopicFragment extends Fragment implements View.OnClickListene
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.sub_employees_modify, parent, false);
-        ImageButton submitEmployee = view.findViewById(R.id.submitEmployee);
-        submitEmployee.setOnClickListener(this);
+        view = inflater.inflate(R.layout.sub_topics_modify, parent, false);
+        ImageButton submitTopic = view.findViewById(R.id.submitTopic);
+        submitTopic.setOnClickListener(this);
 
-        title = view.findViewById(R.id.nameInput);
-        description = view.findViewById(R.id.mailInput);
+        title = view.findViewById(R.id.titleInput);
+        description = view.findViewById(R.id.descriptionInput);
 
         title.setText(editing.getTitle());
         description.setText(editing.getDescription());

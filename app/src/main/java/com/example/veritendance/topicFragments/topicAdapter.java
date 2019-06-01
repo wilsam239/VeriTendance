@@ -1,6 +1,9 @@
 package com.example.veritendance.topicFragments;
 
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +33,7 @@ public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         final topic t = topics.get(i);
         viewHolder.topicName.setText(t.getTitle());
         viewHolder.deleteTopic.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +42,15 @@ public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> 
                 parent.removeTopic(t);
             }
         });
+        viewHolder.modifyTopic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = ((AppCompatActivity)parent.getContext()).getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.fragment_container, new modifyTopicFragment(parent, t, i)).commit();
+            }
+        });
+
     }
 
     @Override
@@ -50,7 +62,7 @@ public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
         public final TextView topicName;
-        //public final ImageButton addSession;
+        public final ImageButton modifyTopic;
         public final ImageButton deleteTopic;
 
         public ViewHolder(View view) {
@@ -58,7 +70,7 @@ public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> 
             this.view = view;
             topicName = view.findViewById(R.id.topic_name);
             deleteTopic = view.findViewById(R.id.deleteTopic);
-            //addSession = view.findViewById(R.id.newSessionFromTopic);
+            modifyTopic = view.findViewById(R.id.editTopic);
         }
     }
 
