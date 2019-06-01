@@ -63,7 +63,7 @@ public class session {
     }
 
     public static void removeAttendee(employee attendeeToBeRemoved) { attendees.remove(attendeeToBeRemoved);}
-    public static void addAttendee(employee newAttendee) { attendees.add(newAttendee);}
+    public static void addAttendee(employee newAttendee) { if(!attendees.contains(newAttendee)) attendees.add(newAttendee);}
 
     public ArrayList<Pair<employee, Integer>> getScores() {
         return scores;

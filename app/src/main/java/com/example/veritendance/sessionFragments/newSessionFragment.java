@@ -23,6 +23,10 @@ public class newSessionFragment extends Fragment implements View.OnClickListener
     public historyFragment historyTab;
     public topicsFragment topicsTab;
 
+    public ArrayList<employee> getEmployees() {
+        return employees;
+    }
+
     private ArrayList<employee> employees;
 
     @SuppressLint("ValidFragment")

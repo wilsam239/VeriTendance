@@ -3,6 +3,7 @@ package com.example.veritendance.sessionFragments;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,6 +32,7 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
 
     protected TextView sessionPlaceholder;
     public newSessionFragment parentFragment;
+    public boolean addAdapter = false;
 
     @SuppressLint("ValidFragment")
     public sessionFragment(newSessionFragment p, ArrayList<employee> e) {
@@ -60,8 +62,13 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
 
         Button finishSession = view.findViewById(R.id.finishSession);
 
-        //FloatingActionButton addAttendee = (FloatingActionButton) view.findViewById(R.id.newAttendeeButton);
-        //addAttendee.setOnClickListener(this);
+        FloatingActionButton addAttendee = (FloatingActionButton) view.findViewById(R.id.newAttendeeFloatingButton);
+        if(currentSession.getAttendees().equals(parentFragment.getEmployees())) {
+            addAttendee.hide();
+        } else {
+            addAttendee.show();
+            addAttendee.setOnClickListener(this);
+        }
 
         finishSession.setTextColor(Color.parseColor("#ff0000"));
         if (currentSession.getAttendeeCount() != 0) {
@@ -69,11 +76,12 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
             finishSession.setOnClickListener(this);
         }
 
+
         this.attendeesView = view.findViewById(R.id.attendees);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.attendeesView.setLayoutManager(mLayoutManager);
 
-        adapter = new employeeAdapterNoEdit(currentSession.getAttendees(), this);
+        if(!addAdapter) adapter = new employeeAdapterRemoveNoEdit(currentSession.getAttendees(), this);
         this.attendeesView.setAdapter(adapter);
 
         return view;
@@ -87,9 +95,11 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            /*case R.id.newAttendeeButton:
-
-                break;*/
+            case R.id.newAttendeeFloatingButton:
+                adapter = new employeeAdapterAddAttendee(parentFragment.getEmployees(), this);
+                this.attendeesView.setAdapter(adapter);
+                addAdapter = true;
+                break;
             case R.id.finishSession:
                 currentSession.setEndDate(new Date(System.currentTimeMillis()));
                 currentSession.setEndTime(formatter.format(currentSession.getEndDate()));
@@ -105,5 +115,9 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
     public void removeAttendee(employee attendeeToBeRemoved) {
         currentSession.removeAttendee(attendeeToBeRemoved);
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
+
+    public ArrayList<employee> getAttendees() {
+        return currentSession.getAttendees();
     }
 }
