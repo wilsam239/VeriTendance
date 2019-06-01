@@ -13,7 +13,7 @@ import com.example.veritendance.sessionFragments.sessionFragment;
 
 import java.util.ArrayList;
 
-public class employeeAdapterRemoveNoEdit extends RecyclerView.Adapter<employeeAdapterRemoveNoEdit.ViewHolder> {
+public class employeeRemoveNoEditAdapter extends RecyclerView.Adapter<employeeRemoveNoEditAdapter.ViewHolder> {
     /**
      * Employee adapter
      * Used to connect the recycler view to data
@@ -22,7 +22,7 @@ public class employeeAdapterRemoveNoEdit extends RecyclerView.Adapter<employeeAd
     private ArrayList<employee> employees;
     private sessionFragment parent;
 
-    public employeeAdapterRemoveNoEdit(ArrayList<employee> employees, sessionFragment p) {
+    public employeeRemoveNoEditAdapter(ArrayList<employee> employees, sessionFragment p) {
         this.employees = employees;
         parent = p;
     }

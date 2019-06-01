@@ -59,7 +59,7 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_container, new newEmployee(this)).commit();
+        ft.replace(R.id.fragment_container, new newEmployeeFragment(this)).commit();
     }
 
     // Returnb the list of employees

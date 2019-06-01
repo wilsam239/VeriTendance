@@ -27,7 +27,7 @@ import com.example.veritendance.topicFragments.topicsFragment;
 import java.text.SimpleDateFormat;
 
 @SuppressLint("ValidFragment")
-public class sessionSummary extends Fragment implements View.OnClickListener {
+public class sessionSummaryFragment extends Fragment implements View.OnClickListener {
     /**
      * Session Summary fragment
      * Shows the sub_session_summary layout
@@ -53,7 +53,7 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     public historyFragment h;
     public topicsFragment t;
 
-    public sessionSummary(sessionFragment frag, session s, historyFragment h, topicsFragment t) {
+    public sessionSummaryFragment(sessionFragment frag, session s, historyFragment h, topicsFragment t) {
         concludedSession = s;
         this.h = h;
         this.t = t;

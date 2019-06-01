@@ -19,7 +19,7 @@ import com.example.veritendance.sessionFragments.session;
 import java.util.ArrayList;
 
 
-public class modifySession extends Fragment implements View.OnClickListener {
+public class modifySessionFragment extends Fragment implements View.OnClickListener {
     /**
      * Modify Session fragment
      * Allows the user to modify a past session
@@ -39,7 +39,7 @@ public class modifySession extends Fragment implements View.OnClickListener {
     private session editing;
     private int index;
 
-    public modifySession(historyFragment p, session s, int index) {
+    public modifySessionFragment(historyFragment p, session s, int index) {
         parentFragment = p;
         editing = s;
         this.index = index;

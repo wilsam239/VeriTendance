@@ -1,7 +1,5 @@
 package com.example.veritendance.employeeFragments;
 
-import android.content.Context;
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -73,7 +71,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)parent.getContext()).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment_container, new modifyEmployee(parent, emp, i)).commit();
+                ft.replace(R.id.fragment_container, new modifyEmployeeFragment(parent, emp, i)).commit();
             }
         });
         holder.delete.setOnClickListener(new View.OnClickListener() {

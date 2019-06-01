@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 
 import com.example.veritendance.R;
 
-public class newEmployee extends Fragment implements View.OnClickListener {
+public class modifyEmployeeFragment extends Fragment implements View.OnClickListener {
     /**
      * New employee fragment
      * Allows the user to enter a new employee
@@ -21,23 +21,33 @@ public class newEmployee extends Fragment implements View.OnClickListener {
     employeeFragment parentFragment;
     View view;
 
-    EditText name;
-    EditText email;
-    EditText occupation;
+    private EditText name;
+    private EditText email;
+    private EditText occupation;
+
+    private employee editing;
+    private int index;
 
     @SuppressLint("ValidFragment")
-    public newEmployee(employeeFragment p) {
+    public modifyEmployeeFragment(employeeFragment p, employee e, int index) {
         parentFragment = p;
+        editing = e;
+        this.index = index;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.sub_employees_new, parent, false);
+        view = inflater.inflate(R.layout.sub_employees_modify, parent, false);
         ImageButton submitEmployee = view.findViewById(R.id.submitEmployee);
         submitEmployee.setOnClickListener(this);
+
         name = view.findViewById(R.id.nameInput);
         email = view.findViewById(R.id.mailInput);
         occupation = view.findViewById(R.id.occupationInput);
+
+        name.setText(editing.getName());
+        email.setText(editing.getEmail());
+        occupation.setText(editing.getOccupation());
 
         return view;
     }
@@ -49,7 +59,7 @@ public class newEmployee extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        parentFragment.appendEmployee(new employee(name.getText().toString(), email.getText().toString(), occupation.getText().toString()));
+        parentFragment.changeEmployee(new employee(name.getText().toString(), email.getText().toString(), occupation.getText().toString()), index);
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, parentFragment).commit();

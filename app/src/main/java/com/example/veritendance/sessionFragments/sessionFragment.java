@@ -78,7 +78,7 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.attendeesView.setLayoutManager(mLayoutManager);
 
-        if(!addAdapter) adapter = new employeeAdapterRemoveNoEdit(currentSession.getAttendees(), this);
+        if(!addAdapter) adapter = new employeeRemoveNoEditAdapter(currentSession.getAttendees(), this);
         this.attendeesView.setAdapter(adapter);
 
         return view;
@@ -93,7 +93,7 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.newAttendeeFloatingButton:
-                adapter = new employeeAdapterAddAttendee(parentFragment.getEmployees(), this);
+                adapter = new employeeAddAttendeeAdapter(parentFragment.getEmployees(), this);
                 this.attendeesView.setAdapter(adapter);
                 FloatingActionButton addAttendee = (FloatingActionButton) v.findViewById(R.id.newAttendeeFloatingButton);
                 addAttendee.hide();
@@ -105,7 +105,7 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
                 currentSession.setEndTime(formatter.format(currentSession.getEndDate()));
                 // Begin a fragment transaction
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, new sessionSummary(this, currentSession, parentFragment.historyTab, parentFragment.topicsTab)).commit();
+                ft.replace(R.id.fragment_container, new sessionSummaryFragment(this, currentSession, parentFragment.historyTab, parentFragment.topicsTab)).commit();
                 break;
         }
     }

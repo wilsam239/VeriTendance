@@ -14,10 +14,10 @@ import java.util.ArrayList;
 
 public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> {
 
-    private ArrayList<String> topics;
+    private ArrayList<topic> topics;
     private topicsFragment parent;
 
-    public topicAdapter(ArrayList<String> topics, topicsFragment t) {
+    public topicAdapter(ArrayList<topic> topics, topicsFragment t) {
         this.topics = topics;
         this.parent = t;
     }
@@ -31,12 +31,12 @@ public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final String topic = topics.get(i);
-        viewHolder.topicName.setText(topic);
+        final topic t = topics.get(i);
+        viewHolder.topicName.setText(t.getTitle());
         viewHolder.deleteTopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                parent.removeTopic(topic);
+                parent.removeTopic(t);
             }
         });
     }
@@ -50,7 +50,7 @@ public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
         public final TextView topicName;
-        public final ImageButton addSession;
+        //public final ImageButton addSession;
         public final ImageButton deleteTopic;
 
         public ViewHolder(View view) {
@@ -58,7 +58,7 @@ public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> 
             this.view = view;
             topicName = view.findViewById(R.id.topic_name);
             deleteTopic = view.findViewById(R.id.deleteTopic);
-            addSession = view.findViewById(R.id.newSessionFromTopic);
+            //addSession = view.findViewById(R.id.newSessionFromTopic);
         }
     }
 

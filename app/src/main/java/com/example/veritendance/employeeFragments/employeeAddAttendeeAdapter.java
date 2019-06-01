@@ -1,8 +1,6 @@
 package com.example.veritendance.employeeFragments;
 
-import android.media.Image;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +13,7 @@ import com.example.veritendance.sessionFragments.sessionFragment;
 
 import java.util.ArrayList;
 
-public class employeeAdapterAddAttendee extends RecyclerView.Adapter<employeeAdapterAddAttendee.ViewHolder> {
+public class employeeAddAttendeeAdapter extends RecyclerView.Adapter<employeeAddAttendeeAdapter.ViewHolder> {
     /**
      * Employee adapter
      * Used to connect the recycler view to data
@@ -24,7 +22,7 @@ public class employeeAdapterAddAttendee extends RecyclerView.Adapter<employeeAda
     private ArrayList<employee> employees;
     private sessionFragment parent;
 
-    public employeeAdapterAddAttendee(ArrayList<employee> employees, sessionFragment p) {
+    public employeeAddAttendeeAdapter(ArrayList<employee> employees, sessionFragment p) {
         this.employees = new ArrayList<>();
         this.employees.addAll(employees);
         parent = p;

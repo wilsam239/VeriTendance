@@ -1,6 +1,5 @@
 package com.example.veritendance.historyFragments;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -14,22 +13,22 @@ import android.widget.TextView;
 
 import com.example.veritendance.R;
 import com.example.veritendance.employeeFragments.employee;
-import com.example.veritendance.sessionFragments.sessionSummary;
+import com.example.veritendance.sessionFragments.sessionSummaryFragment;
 
 import java.util.ArrayList;
 
 public class pairsAdapter extends RecyclerView.Adapter<pairsAdapter.ViewHolder> {
 
     private ArrayList<Pair<employee, Integer>> pairs;
-    private modifySession parentM = null;
-    private sessionSummary parentS = null;
+    private modifySessionFragment parentM = null;
+    private sessionSummaryFragment parentS = null;
 
-    public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, modifySession m) {
+    public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, modifySessionFragment m) {
         this.pairs = pairs;
         parentM = m;
     }
 
-    public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, sessionSummary s) {
+    public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, sessionSummaryFragment s) {
         this.pairs = pairs;
         parentS = s;
     }

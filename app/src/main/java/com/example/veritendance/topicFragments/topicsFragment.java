@@ -18,17 +18,17 @@ import java.util.Comparator;
 public class topicsFragment extends Fragment {
     private RecyclerView topics;
     private RecyclerView.Adapter adapter;
-    private ArrayList<String> topicList;
+    private ArrayList<topic> topicList;
 
     public topicsFragment() {
         topicList = new ArrayList<>();
-        topicList.add("PPS JobReady using the Support Tracker");
-        topicList.add("PPS - ESS Web");
-        topicList.add("PaTH Internships");
-        topicList.add("WfD Activity Management and Monitoring");
-        topicList.add("Risk Assessment - Jobseeker");
-        topicList.add("WfD Risk Assessment (Place)");
-        Collections.sort(topicList);
+        topicList.add(new topic("PPS JobReady using the Support Tracker"));
+        topicList.add(new topic("PPS - ESS Web"));
+        topicList.add(new topic("PaTH Internships"));
+        topicList.add(new topic("WfD Activity Management and Monitoring"));
+        topicList.add(new topic("Risk Assessment - Jobseeker"));
+        topicList.add(new topic("WfD Risk Assessment (Place)"));
+        //Collections.sort(topicList);
     }
 
     @Override
@@ -52,13 +52,21 @@ public class topicsFragment extends Fragment {
     }
 
     public void appendTopic(String newTopic) {
-        if (!topicList.contains(newTopic)) topicList.add(newTopic);
-        Collections.sort(topicList);
+        boolean found = false;
+        for(int i = 0; i < topicList.size(); i++) {
+            if (topicList.get(i).getTitle().equals(newTopic)) found = true;
+        }
+        if (!found) topicList.add(new topic(newTopic));
+        //Collections.sort(topicList);
     }
 
-    public void removeTopic(String oldTopic) {
+    public void removeTopic(topic oldTopic) {
         topicList.remove(oldTopic);
-        Collections.sort(topicList);
+        //Collections.sort(topicList);
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
+
+    public void changeTopic(topic changingTopic, int index) {
+        topicList.set(index, changingTopic);
     }
 }

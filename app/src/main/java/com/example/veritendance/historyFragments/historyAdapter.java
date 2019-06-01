@@ -13,7 +13,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.veritendance.sessionFragments.session;
-import com.example.veritendance.sessionFragments.sessionFragment;
 import com.example.veritendance.R;
 
 import java.util.ArrayList;
@@ -77,7 +76,7 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
             public void onClick(View v) {
                 FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.fragment_container, new modifySession(parent, s, i)).commit();
+                ft.replace(R.id.fragment_container, new modifySessionFragment(parent, s, i)).commit();
             }
         });
         holder.delete.setOnClickListener(new View.OnClickListener() {
