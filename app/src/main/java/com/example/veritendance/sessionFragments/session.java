@@ -14,11 +14,12 @@ public class session {
     private Date startDate;
     private Date endDate;
 
-    private static ArrayList<employee> attendees;
+    private  ArrayList<employee> attendees;
     private ArrayList<Pair<employee, Integer>> scores;
 
     public session(ArrayList<employee> attendees) {
-        this.attendees = attendees;
+        this.attendees = new ArrayList<>();
+        this.attendees.addAll(attendees);
         scores = new ArrayList<>();
     }
 
@@ -62,8 +63,9 @@ public class session {
         this.attendees = attendees;
     }
 
-    public static void removeAttendee(employee attendeeToBeRemoved) { attendees.remove(attendeeToBeRemoved);}
-    public static void addAttendee(employee newAttendee) { if(!attendees.contains(newAttendee)) attendees.add(newAttendee);}
+    public void removeAttendee(employee attendeeToBeRemoved) { attendees.remove(attendeeToBeRemoved);}
+
+    public void addAttendee(employee newAttendee) { if(!attendees.contains(newAttendee)) attendees.add(newAttendee);}
 
     public ArrayList<Pair<employee, Integer>> getScores() {
         return scores;

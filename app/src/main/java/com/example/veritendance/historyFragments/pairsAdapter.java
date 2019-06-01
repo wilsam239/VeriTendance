@@ -10,23 +10,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.veritendance.R;
 import com.example.veritendance.employeeFragments.employee;
+import com.example.veritendance.sessionFragments.sessionSummary;
 
 import java.util.ArrayList;
 
 public class pairsAdapter extends RecyclerView.Adapter<pairsAdapter.ViewHolder> {
 
     private ArrayList<Pair<employee, Integer>> pairs;
-    private modifySession parent;
-    private Context context;
+    private modifySession parentM = null;
+    private sessionSummary parentS = null;
 
     public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, modifySession m) {
         this.pairs = pairs;
-        parent = m;
+        parentM = m;
+    }
+
+    public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, sessionSummary s) {
+        this.pairs = pairs;
+        parentS = s;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,8 +76,8 @@ public class pairsAdapter extends RecyclerView.Adapter<pairsAdapter.ViewHolder> 
             public void afterTextChanged(Editable s) {
                 if(!holder.employee_score.getText().toString().equals("")) {
                     int score = Integer.parseInt(holder.employee_score.getText().toString());
-
-                    parent.changeScores(new Pair(pairs.get(i).first, score <= 100 ? score : 100), i);
+                    if(parentM != null) parentM.changeScores(new Pair(pairs.get(i).first, score <= 100 ? score : 100), i);
+                    if(parentS != null) parentS.changeScores(new Pair(pairs.get(i).first, score <= 100 ? score : 100), i);
                 }
             }
         };

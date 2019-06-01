@@ -34,7 +34,6 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
     public newSessionFragment parentFragment;
     public boolean addAdapter = false;
 
-    @SuppressLint("ValidFragment")
     public sessionFragment(newSessionFragment p, ArrayList<employee> e) {
         parentFragment = p;
         attendees.addAll(e);
@@ -45,8 +44,6 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
         //attendees = e;
         currentSession = new session(attendees);
     }
-
-    //public sessionFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -103,6 +100,7 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
                 addAdapter = true;
                 break;
             case R.id.finishSession:
+                currentSession.setDefaultScores();
                 currentSession.setEndDate(new Date(System.currentTimeMillis()));
                 currentSession.setEndTime(formatter.format(currentSession.getEndDate()));
                 // Begin a fragment transaction

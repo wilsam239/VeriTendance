@@ -4,8 +4,11 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +17,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.veritendance.MainActivity;
+import com.example.veritendance.employeeFragments.employee;
 import com.example.veritendance.historyFragments.historyFragment;
 
 import com.example.veritendance.R;
+import com.example.veritendance.historyFragments.pairsAdapter;
 import com.example.veritendance.topicFragments.topicsFragment;
 
 import java.text.SimpleDateFormat;
@@ -27,12 +32,17 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
      * Session Summary fragment
      * Shows the sub_session_summary layout
      */
+
+    private RecyclerView attendees;
+    private RecyclerView.Adapter adapter;
+
     private TextView startTime;
     private TextView endTime;
     private TextView endTimeTop;
     private TextView sessionName;
     private TextView sessionNameTop;
     private CheckBox save;
+
     private session concludedSession;
     private sessionFragment parent;
 
@@ -95,6 +105,12 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
         ImageButton submitSession = view.findViewById(R.id.submitSessionSummary);
         submitSession.setOnClickListener(this);
 
+        this.attendees = view.findViewById(R.id.summaryAttendees);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
+        this.attendees.setLayoutManager(mLayoutManager);
+        adapter = new pairsAdapter(concludedSession.getScores(), this);
+        this.attendees.setAdapter(adapter);
+
         return view;
     }
 
@@ -106,7 +122,6 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         concludedSession.setTitle(sessionNameTop.getText().toString());
-        concludedSession.setDefaultScores();
 
         if(save.isChecked()) t.appendTopic(sessionNameTop.getText().toString());
         h.appendSession(concludedSession);
@@ -116,4 +131,7 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
         ft.replace(R.id.fragment_container, parent.parentFragment).commit();
     }
 
+    public void changeScores(Pair<employee, Integer> newScore, int index) {
+        concludedSession.changeScore(newScore, index);
+    }
 }
