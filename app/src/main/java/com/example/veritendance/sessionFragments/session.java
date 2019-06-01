@@ -14,11 +14,11 @@ public class session {
     private Date startDate;
     private Date endDate;
 
-    private ArrayList<employee> attendees;
+    private static ArrayList<employee> attendees;
     private ArrayList<Pair<employee, Integer>> scores;
 
-    public session(ArrayList<employee> employees) {
-        attendees = employees;
+    public session(ArrayList<employee> attendees) {
+        this.attendees = attendees;
         scores = new ArrayList<>();
     }
 
@@ -62,6 +62,9 @@ public class session {
         this.attendees = attendees;
     }
 
+    public static void removeAttendee(employee attendeeToBeRemoved) { attendees.remove(attendeeToBeRemoved);}
+    public static void addAttendee(employee newAttendee) { attendees.add(newAttendee);}
+
     public ArrayList<Pair<employee, Integer>> getScores() {
         return scores;
     }
@@ -80,7 +83,7 @@ public class session {
         return Math.round(((float)total / scores.size())*100);
     }
     public int getAttendeeCount() {
-        return scores.size();
+        return attendees.size();
     }
 
     public Date getStartDate() {

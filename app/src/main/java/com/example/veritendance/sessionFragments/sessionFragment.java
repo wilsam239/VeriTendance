@@ -21,15 +21,17 @@ import com.example.veritendance.employeeFragments.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
+@SuppressLint("ValidFragment")
 public class sessionFragment extends Fragment implements View.OnClickListener {
     private RecyclerView attendeesView;
     private RecyclerView.Adapter adapter;
     private session currentSession;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy hh:mm a");
 
-    private ArrayList<employee> attendees; // = new ArrayList<>();
+    private ArrayList<employee> attendees = new ArrayList<>();
 
     protected TextView sessionPlaceholder;
     public newSessionFragment parentFragment;
@@ -37,11 +39,16 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
     @SuppressLint("ValidFragment")
     public sessionFragment(newSessionFragment p, ArrayList<employee> e) {
         parentFragment = p;
-        attendees = e;
-        currentSession = new session(e);
+        attendees.addAll(e);
+        //Collections.copy(attendees, e);
+        /*for(int i = 0; i < e.size(); i++) {
+            attendees.add(new employee(e.get(i).getName(), e.get(i).getEmail(), e.get(i).getOccupation()));
+        }*/
+        //attendees = e;
+        currentSession = new session(attendees);
     }
 
-    public sessionFragment() { }
+    //public sessionFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -52,13 +59,16 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
         sessionPlaceholder = view.findViewById(R.id.fragmentTitle);
         sessionPlaceholder.setText(currentSession.getStartTime().contains("PM") ? "Afternoon Session" : "Morning Session");
 
+        TextView noSession = (TextView) view.findViewById(R.id.noAttendeesMsg);
+        noSession.setVisibility(currentSession.getAttendeeCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+
         Button finishSession = view.findViewById(R.id.finishSession);
 
         //FloatingActionButton addAttendee = (FloatingActionButton) view.findViewById(R.id.newAttendeeButton);
         //addAttendee.setOnClickListener(this);
 
         finishSession.setTextColor(Color.parseColor("#ff0000"));
-        if (currentSession.getAttendees().size() != 0) {
+        if (currentSession.getAttendeeCount() != 0) {
             finishSession.setTextColor(Color.parseColor("#000000"));
             finishSession.setOnClickListener(this);
         }
@@ -67,7 +77,7 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.attendeesView.setLayoutManager(mLayoutManager);
 
-        adapter = new employeeAdapterNoEdit(attendees);
+        adapter = new employeeAdapterNoEdit(currentSession.getAttendees(), this);
         this.attendeesView.setAdapter(adapter);
 
         return view;
@@ -92,5 +102,12 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
                 ft.replace(R.id.fragment_container, new sessionSummary(this, currentSession, parentFragment.historyTab, parentFragment.topicsTab)).commit();
                 break;
         }
+    }
+    public void addAttendee(employee newAttendee) {
+        currentSession.addAttendee(newAttendee);
+    }
+    public void removeAttendee(employee attendeeToBeRemoved) {
+        currentSession.removeAttendee(attendeeToBeRemoved);
+        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 }

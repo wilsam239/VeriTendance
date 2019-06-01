@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.veritendance.R;
+import com.example.veritendance.sessionFragments.sessionFragment;
 
 import java.util.ArrayList;
 
@@ -23,18 +24,11 @@ public class employeeAdapterNoEdit extends RecyclerView.Adapter<employeeAdapterN
      */
 
     private ArrayList<employee> employees;
-    private employeeFragment frag;
-    private Context context;
-    /*public employeeAdapter(ArrayList<employee> employees, OnItemClickListener listener) {
-        this.employees = employees;
-        this.listener = listener;
-    }*/
+    private sessionFragment parent;
 
-    public employeeAdapterNoEdit(ArrayList<employee> employees) {this.employees = employees;}
-    public employeeAdapterNoEdit(ArrayList<employee> employees, employeeFragment f, Context c) {
+    public employeeAdapterNoEdit(ArrayList<employee> employees, sessionFragment p) {
         this.employees = employees;
-        frag = f;
-        context = c;
+        parent = p;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -42,6 +36,7 @@ public class employeeAdapterNoEdit extends RecyclerView.Adapter<employeeAdapterN
         public final TextView employee_name;
         public final TextView employee_jobTitle;
         public final TextView employee_email;
+        public final ImageButton removeAttendee;
 
         public ViewHolder(View view) {
             super(view);
@@ -49,6 +44,7 @@ public class employeeAdapterNoEdit extends RecyclerView.Adapter<employeeAdapterN
             employee_name = view.findViewById(R.id.employee_name);
             employee_jobTitle = view.findViewById(R.id.employee_jobTitle);
             employee_email = view.findViewById(R.id.employee_email);
+            removeAttendee = view.findViewById(R.id.removeAttendeeButton);
         }
     }
 
@@ -65,6 +61,13 @@ public class employeeAdapterNoEdit extends RecyclerView.Adapter<employeeAdapterN
         holder.employee_name.setText(emp.getName());
         holder.employee_jobTitle.setText(emp.getOccupation());
         holder.employee_email.setText(emp.getEmail());
+        holder.removeAttendee.setVisibility(View.VISIBLE);
+        holder.removeAttendee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                parent.removeAttendee(emp);
+            }
+        });
     }
 
     @Override

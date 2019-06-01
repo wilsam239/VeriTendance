@@ -1,6 +1,7 @@
 package com.example.veritendance.employeeFragments;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -37,6 +38,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         public final TextView employee_email;
         public final ImageButton edit;
         public final ImageButton delete;
+        public final ImageButton notSupposedToAppear;
 
         public ViewHolder(View view) {
             super(view);
@@ -46,6 +48,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
             employee_name = view.findViewById(R.id.employee_name);
             employee_jobTitle = view.findViewById(R.id.employee_jobTitle);
             employee_email = view.findViewById(R.id.employee_email);
+            notSupposedToAppear = view.findViewById(R.id.removeAttendeeButton);
         }
     }
 
@@ -64,6 +67,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         holder.employee_email.setText(emp.getEmail());
         holder.edit.setVisibility(View.VISIBLE);
         holder.delete.setVisibility(View.VISIBLE);
+        holder.notSupposedToAppear.setVisibility(View.INVISIBLE);
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
