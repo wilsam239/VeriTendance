@@ -41,6 +41,7 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
     private TextView endTimeTop;
     private TextView sessionName;
     private TextView sessionNameTop;
+    private TextView attendessLabel;
     private CheckBox save;
 
     private session concludedSession;
@@ -78,6 +79,8 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
         sessionName = view.findViewById(R.id.sessionName);
         sessionName.setText(concludedSession.getStartTime().contains("PM") ? "Afternoon Session" : "Morning Session");
 
+        attendessLabel = view.findViewById(R.id.summaryAttendeesLabel);
+        attendessLabel.setText(String.valueOf(concludedSession.getAttendeeCount()).concat(" Attendees"));
 
         sessionNameTop = view.findViewById(R.id.sessionPlaceholder);
         sessionNameTop.setText(((TextView) view.findViewById(R.id.sessionName)).getText().toString());
