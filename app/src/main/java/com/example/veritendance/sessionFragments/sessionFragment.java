@@ -98,6 +98,8 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
             case R.id.newAttendeeFloatingButton:
                 adapter = new employeeAdapterAddAttendee(parentFragment.getEmployees(), this);
                 this.attendeesView.setAdapter(adapter);
+                FloatingActionButton addAttendee = (FloatingActionButton) v.findViewById(R.id.newAttendeeFloatingButton);
+                addAttendee.hide();
                 addAdapter = true;
                 break;
             case R.id.finishSession:
