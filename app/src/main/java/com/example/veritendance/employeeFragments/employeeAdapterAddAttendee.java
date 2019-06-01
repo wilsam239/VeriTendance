@@ -24,7 +24,8 @@ public class employeeAdapterAddAttendee extends RecyclerView.Adapter<employeeAda
     private sessionFragment parent;
 
     public employeeAdapterAddAttendee(ArrayList<employee> employees, sessionFragment p) {
-        this.employees = employees;
+        this.employees = new ArrayList<>();
+        this.employees.addAll(employees);
         parent = p;
         this.employees.removeAll(parent.getAttendees());
     }
