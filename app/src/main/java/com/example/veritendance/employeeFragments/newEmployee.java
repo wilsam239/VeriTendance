@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.veritendance.MainActivity;
 import com.example.veritendance.R;
 
 public class newEmployee extends Fragment implements View.OnClickListener {
@@ -33,7 +32,7 @@ public class newEmployee extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_new_employee, parent, false);
+        view = inflater.inflate(R.layout.sub_employees_new, parent, false);
         ImageButton submitEmployee = view.findViewById(R.id.submitEmployee);
         submitEmployee.setOnClickListener(this);
         name = view.findViewById(R.id.nameInput);

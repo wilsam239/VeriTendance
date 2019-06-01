@@ -34,7 +34,7 @@ public class newSessionFragment extends Fragment implements View.OnClickListener
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_new_session, parent, false);
+        View view = inflater.inflate(R.layout.main_session, parent, false);
         TextView noEmployee = view.findViewById(R.id.noEmployeesSession);
         noEmployee.setVisibility(employees.size() == 0 ? View.VISIBLE : View.INVISIBLE);
         Button addEmptySession = view.findViewById(R.id.addEmptySessionButton);

@@ -29,7 +29,7 @@ public class topicsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_topics, parent, false);
+        View view = inflater.inflate(R.layout.main_topics, parent, false);
 
         this.topics = view.findViewById(R.id.topics);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());

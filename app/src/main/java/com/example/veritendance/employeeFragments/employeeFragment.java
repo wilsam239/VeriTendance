@@ -9,18 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.veritendance.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class employeeFragment extends Fragment implements View.OnClickListener {
     /**
      * Employee Screen Fragment
-     * Shows the activity_employees layout
+     * Shows the main_employees layout
      */
     private RecyclerView employees;
     private RecyclerView.Adapter adapter;
@@ -33,7 +31,7 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_employees, parent, false);
+        View view = inflater.inflate(R.layout.main_employees, parent, false);
 
         // Create the floating action button and set it a listener
         FloatingActionButton addNewEmployee = view.findViewById(R.id.newEmployeeButton);

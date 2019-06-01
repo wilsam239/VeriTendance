@@ -13,12 +13,11 @@ import com.example.veritendance.R;
 import com.example.veritendance.sessionFragments.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class historyFragment extends Fragment {
     /**
      * History fragment
-     * Shows the activity_history layout
+     * Shows the main_history layout
      */
 
     private RecyclerView sessions;
@@ -33,7 +32,7 @@ public class historyFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_history, parent, false);
+        View view = inflater.inflate(R.layout.main_history, parent, false);
         this.sessions = view.findViewById(R.id.history);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.sessions.setLayoutManager(mLayoutManager);

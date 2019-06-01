@@ -1,6 +1,5 @@
 package com.example.veritendance.historyFragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -49,7 +48,7 @@ public class modifySession extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_modify_session, parent, false);
+        View view = inflater.inflate(R.layout.sub_session_modify, parent, false);
 
 
 

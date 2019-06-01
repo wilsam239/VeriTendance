@@ -25,7 +25,7 @@ import java.text.SimpleDateFormat;
 public class sessionSummary extends Fragment implements View.OnClickListener {
     /**
      * Session Summary fragment
-     * Shows the activity_session_summary layout
+     * Shows the sub_session_summary layout
      */
     private TextView startTime;
     private TextView endTime;
@@ -52,7 +52,7 @@ public class sessionSummary extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_session_summary, parent, false);
+        View view = inflater.inflate(R.layout.sub_session_summary, parent, false);
 
         save = (CheckBox) view.findViewById(R.id.saveSession);
 

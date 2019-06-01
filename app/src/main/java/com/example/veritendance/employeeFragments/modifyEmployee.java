@@ -37,7 +37,7 @@ public class modifyEmployee extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_modify_employee, parent, false);
+        view = inflater.inflate(R.layout.sub_employees_modify, parent, false);
         ImageButton submitEmployee = view.findViewById(R.id.submitEmployee);
         submitEmployee.setOnClickListener(this);
 

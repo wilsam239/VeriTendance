@@ -3,25 +3,21 @@ package com.example.veritendance.sessionFragments;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.veritendance.MainActivity;
 import com.example.veritendance.R;
 import com.example.veritendance.employeeFragments.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 
 @SuppressLint("ValidFragment")
@@ -52,7 +48,7 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_empty_session, parent, false);
+        View view = inflater.inflate(R.layout.sub_session_started, parent, false);
         currentSession.setStartDate(new Date(System.currentTimeMillis()));
         currentSession.setStartTime(formatter.format(currentSession.getStartDate()));
 
