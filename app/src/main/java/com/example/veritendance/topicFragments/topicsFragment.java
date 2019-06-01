@@ -28,7 +28,7 @@ public class topicsFragment extends Fragment {
         topicList.add(new topic("WfD Activity Management and Monitoring"));
         topicList.add(new topic("Risk Assessment - Jobseeker"));
         topicList.add(new topic("WfD Risk Assessment (Place)"));
-        //Collections.sort(topicList);
+        Collections.sort(topicList);
     }
 
     @Override
@@ -57,12 +57,11 @@ public class topicsFragment extends Fragment {
             if (topicList.get(i).getTitle().equals(newTopic)) found = true;
         }
         if (!found) topicList.add(new topic(newTopic));
-        //Collections.sort(topicList);
+        Collections.sort(topicList);
     }
 
     public void removeTopic(topic oldTopic) {
         topicList.remove(oldTopic);
-        //Collections.sort(topicList);
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 

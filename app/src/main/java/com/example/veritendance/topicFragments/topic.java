@@ -1,6 +1,6 @@
 package com.example.veritendance.topicFragments;
 
-public class topic {
+public class topic implements Comparable<topic>{
 
     private String title;
     private String description;
@@ -31,4 +31,8 @@ public class topic {
         this.description = description;
     }
 
+    @Override
+    public int compareTo(topic o) {
+        return this.getTitle().compareTo(o.getTitle());
+    }
 }
