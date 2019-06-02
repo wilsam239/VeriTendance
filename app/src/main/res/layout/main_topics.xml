@@ -38,7 +38,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="No topics recorded! Save a session as a topic in the New Session tab!"
+        android:text="@string/no_topics_recorded_save_a_session_as_a_topic_in_the_new_session_tab"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
