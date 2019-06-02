@@ -122,6 +122,7 @@ public class sessionSummaryFragment extends Fragment implements View.OnClickList
         ImageButton submitSession = view.findViewById(R.id.submitSessionSummary);
         submitSession.setOnClickListener(this);
 
+        // Set recycler view and assign a layout manager and adapter
         this.attendees = view.findViewById(R.id.summaryAttendees);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.attendees.setLayoutManager(mLayoutManager);
@@ -138,9 +139,12 @@ public class sessionSummaryFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        // Set the title of the session to the label at top of screen
         concludedSession.setTitle(sessionNameTop.getText().toString());
 
+        // If the user chcked the save session as topic, add it to the topic list
         if(save.isChecked()) t.appendTopic(sessionNameTop.getText().toString());
+        // Append the session to list of completed sessions
         h.appendSession(concludedSession);
 
         // Begin a fragment transaction
@@ -149,6 +153,7 @@ public class sessionSummaryFragment extends Fragment implements View.OnClickList
     }
 
     public void changeScores(Pair<employee, Integer> newScore, int index) {
+        // Modify scores at the index
         concludedSession.changeScore(newScore, index);
     }
 }

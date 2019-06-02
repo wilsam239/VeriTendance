@@ -14,4 +14,7 @@
     <string name="no_employees_msg">No Employees recorded. Press the + button below to add some</string>
     <string name="no_employees_session_msg">You cannot start a session until there are employees to participate! Add some employees on the Employees tab!</string>
     <string name="no_employees_in_session_msg">You cannot finish a session that has no attendees.</string>
+    <string name="start_new_jobactive_session">Start New jobactive Session</string>
+    <string name="start_new_empty_session">Start New Empty Session</string>
+    <string name="start_new_des_session">Start New DES Session</string>
 </resources>

@@ -28,13 +28,13 @@
         android:id="@+id/addEmptySessionButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Start New Empty Session"
+        android:text="@string/start_new_empty_session"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32999998" />
+        app:layout_constraintVertical_bias="0.33" />
 
     <TextView
         android:id="@+id/noEmployeesSession"
@@ -52,7 +52,7 @@
         android:id="@+id/addjobactiveSessionButton"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Start New jobactive Session"
+        android:text="@string/start_new_jobactive_session"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.50"
@@ -64,7 +64,7 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Start New DES Session"
+        android:text="@string/start_new_des_session"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
