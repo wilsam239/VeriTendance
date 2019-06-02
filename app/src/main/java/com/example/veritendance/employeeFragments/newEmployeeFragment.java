@@ -16,25 +16,35 @@ public class newEmployeeFragment extends Fragment implements View.OnClickListene
     /**
      * New employee fragment
      * Allows the user to enter a new employee
+     * Shows the sub_employees_new layout
      */
 
+    // Parent fragment
     employeeFragment parentFragment;
-    View view;
 
+    // The fields to be displayed on the screen
     EditText name;
     EditText email;
     EditText occupation;
     EditText contract;
 
+    /**
+     * Constructor
+     * @param p - parent employeeFragment
+     */
     public newEmployeeFragment(employeeFragment p) {
         parentFragment = p;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.sub_employees_new, parent, false);
+        View view = inflater.inflate(R.layout.sub_employees_new, parent, false);
+
+        // Create the button and set its listener
         ImageButton submitEmployee = view.findViewById(R.id.submitEmployee);
         submitEmployee.setOnClickListener(this);
+
+        // Create the fields to be displayed for editing
         name = view.findViewById(R.id.nameInput);
         email = view.findViewById(R.id.mailInput);
         occupation = view.findViewById(R.id.occupationInput);
@@ -50,6 +60,7 @@ public class newEmployeeFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        // Append the employee based on the field inputs
         parentFragment.appendEmployee(new employee(name.getText().toString(), email.getText().toString(), occupation.getText().toString(),contract.getText().toString()));
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();

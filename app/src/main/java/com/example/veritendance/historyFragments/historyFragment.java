@@ -20,26 +20,33 @@ public class historyFragment extends Fragment {
      * Shows the main_history layout
      */
 
+    // Recycler view stuff
     private RecyclerView sessions;
     private RecyclerView.Adapter adapter;
-    private ArrayList<sessionFragment> sessionFragmentList;
+
+    // List of sessions
     private ArrayList<session> sessionList;
 
+    /**
+     * Default constructor initialises the arraylist
+     */
     public historyFragment() {
-        sessionFragmentList = new ArrayList<>();
         sessionList = new ArrayList<>();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_history, parent, false);
+
+        // Create the no session message textview and set its visibility based on the number of sessions
+        TextView noSession = (TextView) view.findViewById(R.id.noHistory);
+        noSession.setVisibility(sessionList.size() == 0 ? View.VISIBLE : View.INVISIBLE);
+
+        // Create the recycler view and connect it to adapter and layout manager
         this.sessions = view.findViewById(R.id.history);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(parent.getContext());
         this.sessions.setLayoutManager(mLayoutManager);
-        TextView noSession = (TextView) view.findViewById(R.id.noHistory);
-        noSession.setVisibility(sessionList.size() == 0 ? View.VISIBLE : View.INVISIBLE);
-        //adapter = new historyAdapter(sessionFragmentList);
-        adapter = new historyAdapter(sessionList, this.getContext(), this);
+        adapter = new historyAdapter(sessionList, this);
         this.sessions.setAdapter(adapter);
 
         return view;
@@ -51,14 +58,17 @@ public class historyFragment extends Fragment {
     }
 
     public void appendSession(session newSession) {
+        // Add a new session
         sessionList.add(newSession);
     }
 
     public void changeSession(session editedSession, int index) {
+        // Modify an existing session
         sessionList.set(index, editedSession);
     }
 
     public void deleteSession(session sessionToBeRemoved) {
+        // Delete a session
         sessionList.remove(sessionToBeRemoved);
         getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }

@@ -18,21 +18,42 @@ import com.example.veritendance.sessionFragments.sessionSummaryFragment;
 import java.util.ArrayList;
 
 public class pairsAdapter extends RecyclerView.Adapter<pairsAdapter.ViewHolder> {
-
+    /**
+     * Pairs adapter
+     * Used to connect the recycler view to data
+     * This is the adapter used to show scores on the session summary and history screen
+     */
+    // The list of pairs
     private ArrayList<Pair<employee, Integer>> pairs;
+
+    // Parent fragments
     private modifySessionFragment parentM = null;
     private sessionSummaryFragment parentS = null;
 
+    /**
+     * Constructor for modify session
+     * @param pairs - scores list
+     * @param m - parent modifySessionFragment
+     */
     public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, modifySessionFragment m) {
         this.pairs = pairs;
         parentM = m;
     }
 
+    /**
+     * Constructor for session summary
+     * @param pairs - scores list
+     * @param s - parent sessionSummaryFragment
+     */
     public pairsAdapter(ArrayList<Pair<employee, Integer>> pairs, sessionSummaryFragment s) {
         this.pairs = pairs;
         parentS = s;
     }
 
+    /**
+     * the view holder object
+     * Sets all the items that will appear/disappear from the view
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
         public final TextView employee_name;
@@ -56,10 +77,13 @@ public class pairsAdapter extends RecyclerView.Adapter<pairsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int i) {
+        /**
+         * Sets each item to the scores parameters
+         */
         final Pair<employee, Integer> att = pairs.get(i);
         holder.employee_name.setText(att.first.getName());
         holder.employee_score.setText(att.second.toString());
-        // Creates a TextWatcher so that when the sessionName is changed, it updates the top label
+        // Creates a TextWatcher so that when the employee score is changed, it updates their score
         TextWatcher scoreTextWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -80,7 +104,7 @@ public class pairsAdapter extends RecyclerView.Adapter<pairsAdapter.ViewHolder> 
                 }
             }
         };
-
+        // add the listener to the edit text field
         holder.employee_score.addTextChangedListener(scoreTextWatcher);
     }
 

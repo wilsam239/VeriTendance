@@ -69,7 +69,7 @@ public class employeeAddAttendeeAdapter extends RecyclerView.Adapter<employeeAdd
     public void onBindViewHolder(@NonNull ViewHolder holder, final int i) {
         /**
          * Set each item to the employees parameters
-         * Also sets onClickListeners for button
+         * Also sets onClickListeners for buttons
          */
         final employee emp = employees.get(i);
         holder.employee_name.setText(emp.getName());

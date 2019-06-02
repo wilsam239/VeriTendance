@@ -21,21 +21,29 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
     /**
      * History adapter
      * Used to connect the recycler view to data
+     * The adapter used for the history screen
      */
+
+    // Parent fragment
     private historyFragment parent;
+    // Session list
     private ArrayList<session> sessions;
-    private Context context;
 
-    /*public historyAdapter(ArrayList<sessionFragment> sessionFragments) {
-        this.sessionFragments = sessionFragments;
-    }*/
 
-    public historyAdapter(ArrayList<session> sessions, Context c, historyFragment h) {
+    /**
+     * Constructor
+     * @param sessions - list of sessions
+     * @param h - parent historyFragment
+     */
+    public historyAdapter(ArrayList<session> sessions, historyFragment h) {
         this.sessions = sessions;
-        context = c;
         parent = h;
     }
 
+    /**
+     * The view holder object
+     * Sets all the items that will appear/disappear from the view
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
         public final TextView session_name;
@@ -66,6 +74,10 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int i) {
+        /**
+         * Set each item to the session's parameters
+         * Also sets onClickListeners for buttons
+         */
         final session s = sessions.get(i);
         holder.session_name.setText(s.getTitle());
         holder.session_date.setText(s.getEndTime());
@@ -74,7 +86,8 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
+                // If the edit button was selected, replace the current fragment with a modify session fragment
+                FragmentManager fm = ((AppCompatActivity)parent.getContext()).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ft.replace(R.id.fragment_container, new modifySessionFragment(parent, s, i)).commit();
             }
@@ -82,6 +95,7 @@ public class historyAdapter extends RecyclerView.Adapter<historyAdapter.ViewHold
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // If the delete session button was selected, delete the session from the list
                 parent.deleteSession(s);
             }
         });
