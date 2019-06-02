@@ -33,9 +33,11 @@ public class sessionSummaryFragment extends Fragment implements View.OnClickList
      * Shows the sub_session_summary layout
      */
 
+    // Recycler view stuff
     private RecyclerView attendees;
     private RecyclerView.Adapter adapter;
 
+    // Items in the view
     private TextView startTime;
     private TextView endTime;
     private TextView endTimeTop;
@@ -44,15 +46,25 @@ public class sessionSummaryFragment extends Fragment implements View.OnClickList
     private TextView attendessLabel;
     private CheckBox save;
 
+    // Session being summarised
     private session concludedSession;
+    // Parent fragment
     private sessionFragment parent;
 
+    // Date formatter
     private SimpleDateFormat formatter = new SimpleDateFormat("dd MMM. yyyy hh:mm:ss a");
 
-    public MainActivity main;
+    // The history and topics fragment
     public historyFragment h;
     public topicsFragment t;
 
+    /**
+     * Catch all constructor
+     * @param frag - parent fragment
+     * @param s - session being summarised
+     * @param h - History fragment
+     * @param t - Topics fragment
+     */
     public sessionSummaryFragment(sessionFragment frag, session s, historyFragment h, topicsFragment t) {
         concludedSession = s;
         this.h = h;
@@ -65,6 +77,7 @@ public class sessionSummaryFragment extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.sub_session_summary, parent, false);
 
+        // Create all the TextViews and buttons
         save = (CheckBox) view.findViewById(R.id.saveSession);
 
         startTime = view.findViewById(R.id.startTime);
@@ -77,6 +90,7 @@ public class sessionSummaryFragment extends Fragment implements View.OnClickList
         endTimeTop.setText(formatter.format(concludedSession.getEndDate()));
 
         sessionName = view.findViewById(R.id.sessionName);
+        // If the session start time has PM set it to "Afternoon Session"
         sessionName.setText(concludedSession.getStartTime().contains("PM") ? "Afternoon Session" : "Morning Session");
 
         attendessLabel = view.findViewById(R.id.summaryAttendeesLabel);

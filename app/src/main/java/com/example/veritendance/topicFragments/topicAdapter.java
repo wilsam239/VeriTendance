@@ -16,10 +16,20 @@ import com.example.veritendance.R;
 import java.util.ArrayList;
 
 public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> {
+    /**
+     * Topic adapter
+     * Used to connect the topics recycler view to data
+     */
 
+    // The topic list and the parent topicsFragment
     private ArrayList<topic> topics;
     private topicsFragment parent;
 
+    /**
+     * Constructor
+     * @param topics - list of topics
+     * @param t - parent fragment
+     */
     public topicAdapter(ArrayList<topic> topics, topicsFragment t) {
         this.topics = topics;
         this.parent = t;
@@ -34,17 +44,26 @@ public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+        // Set the variables inside each item
+
+        // Get the topic at i
         final topic t = topics.get(i);
+
+        // Set the topicName to the topics title
+        // Set the deleteTopic button's listener
         viewHolder.topicName.setText(t.getTitle());
         viewHolder.deleteTopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Remove the topic
                 parent.removeTopic(t);
             }
         });
+        // Set the modifyTopic button's listener
         viewHolder.modifyTopic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Replace the current fragment with the modify topic fragment
                 FragmentManager fm = ((AppCompatActivity)parent.getContext()).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ft.replace(R.id.fragment_container, new modifyTopicFragment(parent, t, i)).commit();
@@ -60,6 +79,9 @@ public class topicAdapter extends RecyclerView.Adapter<topicAdapter.ViewHolder> 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        /**
+         * Sets all the items in the view
+         */
         public final View view;
         public final TextView topicName;
         public final ImageButton modifyTopic;

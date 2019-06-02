@@ -15,6 +15,7 @@ import com.example.veritendance.topicFragments.topicsFragment;
 
 public class MainActivity extends AppCompatActivity {
     // Create a Fragment that will be used in navigation
+
     private Fragment currentFragment;
     // Create 4 different fragments to keep track of when a tab has been created
     public employeeFragment employeeTab = null;
@@ -56,17 +57,15 @@ public class MainActivity extends AppCompatActivity {
                         // Using the fragment transaction, replace the fragment container with the new fragment
                         ft.replace(R.id.fragment_container, currentFragment).commit();
                     }
-
                     return true;
                 case R.id.navigation_session:
-
                     if (currentFragment != sessionTab) {
                         // Remove the previous fragment and commit that change
                         ft.remove(currentFragment).commit();
                         // Create a new fragment transaction
                         ft = getSupportFragmentManager().beginTransaction();
                         // Create a new sessionFragment Fragment
-                        currentFragment = sessionTab;
+                        currentFragment = new newSessionFragment(historyTab, topicsTab, employeeTab.getEmployeesList());
                         ft.replace(R.id.fragment_container, currentFragment).commit();
                     }
                     return true;
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
                         ft.remove(currentFragment).commit();
                         // Create a new fragment transaction
                         ft = getSupportFragmentManager().beginTransaction();
-                        // Create a new topics Fragment
                         currentFragment = topicsTab;
                         // Using the fragment transaction, replace the fragment container with the new fragment
                         ft.replace(R.id.fragment_container, currentFragment).commit();

@@ -20,11 +20,17 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
      * Employee Screen Fragment
      * Shows the main_employees layout
      */
+
+    // Recycler view stuff
     private RecyclerView employees;
     private RecyclerView.Adapter adapter;
+
+    // List of employees
     private ArrayList<employee> employeeList;
 
+    // Default constructor
     public employeeFragment() {
+        // Create an employee list and initialise it
         employeeList = new ArrayList<>();
         initialiseEmployees();
     }
@@ -37,6 +43,7 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
         FloatingActionButton addNewEmployee = view.findViewById(R.id.newEmployeeButton);
         addNewEmployee.setOnClickListener(this);
 
+        // Create the no employee message textview and set it's visibility based on the number of employees.
         TextView noEmployees = view.findViewById(R.id.noEmployees);
         noEmployees.setVisibility(employeeList.size() == 0 ? View.VISIBLE : View.INVISIBLE);
 
@@ -62,7 +69,7 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
         ft.replace(R.id.fragment_container, new newEmployeeFragment(this)).commit();
     }
 
-    // Returnb the list of employees
+    // Return the list of employees
     public ArrayList<employee> getEmployeesList() {
         return employeeList;
     }
@@ -83,10 +90,10 @@ public class employeeFragment extends Fragment implements View.OnClickListener {
 
     public void initialiseEmployees() {
         // Create a few employees for startup
-        this.employeeList.add(new employee("Sam Williamson", "sam.williamson@best.com.au", "Support Officer"));
-        this.employeeList.add(new employee("Steve Rogers", "steve.rogers@avengers.com.au", "Captain America"));
-        this.employeeList.add(new employee("Tony Stark", "tony.stark@starkindustries.com.au", "Iron Man"));
-        this.employeeList.add(new employee("Peter Parker", "peter.parker@starkindustries.com.au", "Student/Intern"));
+        this.employeeList.add(new employee("Sam Williamson", "sam.williamson@best.com.au", "Support Officer", "jobactive"));
+        this.employeeList.add(new employee("Steve Rogers", "steve.rogers@avengers.com.au", "Captain America", "DES"));
+        this.employeeList.add(new employee("Tony Stark", "tony.stark@starkindustries.com.au", "Iron Man", "jobactive"));
+        this.employeeList.add(new employee("Peter Parker", "peter.parker@starkindustries.com.au", "Student/Intern", "jobactive"));
 
     }
 }

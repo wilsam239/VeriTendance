@@ -44,71 +44,129 @@
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp">
 
-        <EditText
-            android:id="@+id/occupationInput"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="162dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Job Coach"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/occupationLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="167.5dp"
-            android:text="Job Title"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/nameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/mailInput"
-            android:layout_width="384dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="16sp"
-            android:layout_marginTop="108dp"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:text="john.doe@best.com.au"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/nameInput"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="John Doe"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/mailLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="72dp"
-            android:text="E-mail Address"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/occupationLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Job Title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mailInput" />
 
-        <TextView
-            android:id="@+id/nameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="23.5dp"
-            android:text="Name"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/mailLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="14dp"
+                android:text="E-mail Address"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameInput" />
 
-        <EditText
-            android:id="@+id/nameInput"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="18dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="John Doe"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            <EditText
+                android:id="@+id/mailInput"
+                android:layout_width="384dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:text="john.doe@best.com.au"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mailLabel" />
+
+            <EditText
+                android:id="@+id/occupationInput"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Job Coach"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mailInput" />
+
+            <TextView
+                android:id="@+id/contractLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Contract"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/occupationInput" />
+
+            <EditText
+                android:id="@+id/contractInput"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Contract"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/occupationInput" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contractInput" />
+        </android.support.constraint.ConstraintLayout>
+
     </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>

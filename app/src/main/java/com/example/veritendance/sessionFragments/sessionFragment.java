@@ -56,6 +56,7 @@ public class sessionFragment extends Fragment implements View.OnClickListener {
 
         TextView noSession = (TextView) view.findViewById(R.id.noAttendeesMsg);
         noSession.setVisibility(currentSession.getAttendeeCount() == 0 ? View.VISIBLE : View.INVISIBLE);
+        //noSession.setVisibility();
 
         Button finishSession = view.findViewById(R.id.finishSession);
 

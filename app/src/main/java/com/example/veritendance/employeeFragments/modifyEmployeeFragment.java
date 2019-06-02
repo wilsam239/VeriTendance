@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 
 import com.example.veritendance.R;
 
+@SuppressLint("ValidFragment")
 public class modifyEmployeeFragment extends Fragment implements View.OnClickListener {
     /**
      * New employee fragment
@@ -24,11 +25,11 @@ public class modifyEmployeeFragment extends Fragment implements View.OnClickList
     private EditText name;
     private EditText email;
     private EditText occupation;
+    private EditText contract;
 
     private employee editing;
     private int index;
 
-    @SuppressLint("ValidFragment")
     public modifyEmployeeFragment(employeeFragment p, employee e, int index) {
         parentFragment = p;
         editing = e;
@@ -44,10 +45,12 @@ public class modifyEmployeeFragment extends Fragment implements View.OnClickList
         name = view.findViewById(R.id.nameInput);
         email = view.findViewById(R.id.mailInput);
         occupation = view.findViewById(R.id.occupationInput);
+        contract = view.findViewById(R.id.contractInput);
 
         name.setText(editing.getName());
         email.setText(editing.getEmail());
         occupation.setText(editing.getOccupation());
+        contract.setText(editing.getContract());
 
         return view;
     }
@@ -59,7 +62,7 @@ public class modifyEmployeeFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        parentFragment.changeEmployee(new employee(name.getText().toString(), email.getText().toString(), occupation.getText().toString()), index);
+        parentFragment.changeEmployee(new employee(name.getText().toString(), email.getText().toString(), occupation.getText().toString(),contract.getText().toString()), index);
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, parentFragment).commit();

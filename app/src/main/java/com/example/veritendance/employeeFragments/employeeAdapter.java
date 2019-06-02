@@ -19,16 +19,26 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
     /**
      * Employee adapter
      * Used to connect the recycler view to data
+     * This is the default employee adapter that shows an edit and delete button
      */
 
     private ArrayList<employee> employees;
     private employeeFragment parent;
 
+    /**
+     *
+     * @param employees - the list of employees to display
+     * @param f - the parent employeeFragment
+     */
     public employeeAdapter(ArrayList<employee> employees, employeeFragment f) {
         this.employees = employees;
         parent = f;
     }
 
+    /**
+     * The view holder object
+     * Sets all the items that will appear/disappear from the view
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
         public final TextView employee_name;
@@ -59,6 +69,10 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int i) {
+        /**
+         * Set each item to the employees parameters
+         * Also sets onClickListeners for buttons
+         */
         final employee emp = employees.get(i);
         holder.employee_name.setText(emp.getName());
         holder.employee_jobTitle.setText(emp.getOccupation());
@@ -69,6 +83,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // If the modify button was pressed, replace the fragment with a modify employee fragment
                 FragmentManager fm = ((AppCompatActivity)parent.getContext()).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ft.replace(R.id.fragment_container, new modifyEmployeeFragment(parent, emp, i)).commit();
@@ -77,6 +92,7 @@ public class employeeAdapter extends RecyclerView.Adapter<employeeAdapter.ViewHo
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // If the delete button was pressed, remove the employee and refresh the fragment
                 parent.removeEmployee(emp);
                 FragmentManager fm = ((AppCompatActivity)parent.getContext()).getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();

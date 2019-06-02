@@ -15,13 +15,19 @@ import java.util.ArrayList;
 
 public class employeeAddAttendeeAdapter extends RecyclerView.Adapter<employeeAddAttendeeAdapter.ViewHolder> {
     /**
-     * Employee adapter
+     * Employee add attendee adapter
      * Used to connect the recycler view to data
+     * This is the adapter used for the in session screen, it allows attendees to be added.
      */
 
     private ArrayList<employee> employees;
     private sessionFragment parent;
 
+    /**\
+     *
+     * @param employees - the list of employees to display
+     * @param p - the parent sessionFragment
+     */
     public employeeAddAttendeeAdapter(ArrayList<employee> employees, sessionFragment p) {
         this.employees = new ArrayList<>();
         this.employees.addAll(employees);
@@ -29,6 +35,10 @@ public class employeeAddAttendeeAdapter extends RecyclerView.Adapter<employeeAdd
         this.employees.removeAll(parent.getAttendees());
     }
 
+    /**
+     * The view holder object
+     * Sets all the items that will appear/disappear from the view
+     */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final View view;
         public final TextView employee_name;
@@ -57,6 +67,10 @@ public class employeeAddAttendeeAdapter extends RecyclerView.Adapter<employeeAdd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int i) {
+        /**
+         * Set each item to the employees parameters
+         * Also sets onClickListeners for button
+         */
         final employee emp = employees.get(i);
         holder.employee_name.setText(emp.getName());
         holder.employee_jobTitle.setText(emp.getOccupation());
@@ -66,6 +80,7 @@ public class employeeAddAttendeeAdapter extends RecyclerView.Adapter<employeeAdd
         holder.addAttendee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // if the addAttendee button was selected, add the attendee to the session and refresh the screen
                 parent.addAttendee(emp);
                 parent.addAdapter = false;
                 parent.getFragmentManager().beginTransaction().detach(parent).attach(parent).commit();

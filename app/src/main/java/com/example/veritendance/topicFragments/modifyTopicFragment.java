@@ -16,19 +16,27 @@ import com.example.veritendance.employeeFragments.employeeFragment;
 @SuppressLint("ValidFragment")
 public class modifyTopicFragment extends Fragment implements View.OnClickListener {
     /**
-     * New employee fragment
-     * Allows the user to enter a new employee
+     * Modify Topic fragment
+     * Shows the sub_topics_modify layout
      */
 
+    // The parent fragment
     topicsFragment parentFragment;
-    View view;
 
+    // The edit text variables
     private EditText title;
     private EditText description;
 
+    // The topic being edited and its index
     private topic editing;
     private int index;
 
+    /**
+     * Constructor
+     * @param p - the parent topic fragment
+     * @param t - the topic being edited
+     * @param index - the index of the topic being edited
+     */
     public modifyTopicFragment(topicsFragment p, topic t, int index) {
         parentFragment = p;
         editing = t;
@@ -37,13 +45,17 @@ public class modifyTopicFragment extends Fragment implements View.OnClickListene
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.sub_topics_modify, parent, false);
+        View view = inflater.inflate(R.layout.sub_topics_modify, parent, false);
+
+        // Create the image button and set it a listener
         ImageButton submitTopic = view.findViewById(R.id.submitTopic);
         submitTopic.setOnClickListener(this);
 
+        // Create the title Edit Text and description Edit text
         title = view.findViewById(R.id.titleInput);
         description = view.findViewById(R.id.descriptionInput);
 
+        // Set the text in the edit text fields
         title.setText(editing.getTitle());
         description.setText(editing.getDescription());
 
@@ -57,6 +69,7 @@ public class modifyTopicFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
+        // Change the topic at index with the new entered text
         parentFragment.changeTopic(new topic(title.getText().toString(), description.getText().toString()), index);
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();

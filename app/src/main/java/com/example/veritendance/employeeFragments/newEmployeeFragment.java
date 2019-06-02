@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.veritendance.R;
-
+@SuppressLint("ValidFragment")
 public class newEmployeeFragment extends Fragment implements View.OnClickListener {
     /**
      * New employee fragment
@@ -24,8 +24,8 @@ public class newEmployeeFragment extends Fragment implements View.OnClickListene
     EditText name;
     EditText email;
     EditText occupation;
+    EditText contract;
 
-    @SuppressLint("ValidFragment")
     public newEmployeeFragment(employeeFragment p) {
         parentFragment = p;
     }
@@ -38,6 +38,7 @@ public class newEmployeeFragment extends Fragment implements View.OnClickListene
         name = view.findViewById(R.id.nameInput);
         email = view.findViewById(R.id.mailInput);
         occupation = view.findViewById(R.id.occupationInput);
+        contract = view.findViewById(R.id.contractInput);
 
         return view;
     }
@@ -49,7 +50,7 @@ public class newEmployeeFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        parentFragment.appendEmployee(new employee(name.getText().toString(), email.getText().toString(), occupation.getText().toString()));
+        parentFragment.appendEmployee(new employee(name.getText().toString(), email.getText().toString(), occupation.getText().toString(),contract.getText().toString()));
         // Begin a fragment transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_container, parentFragment).commit();
